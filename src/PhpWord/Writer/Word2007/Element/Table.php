@@ -8,24 +8,24 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
+ * @link        https://github.com/MunizEverton/PHPWord
  * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\Word2007\Element;
+namespace MunizEverton\PhpWord\Writer\Word2007\Element;
 
-use PhpOffice\PhpWord\Element\Cell as CellElement;
-use PhpOffice\PhpWord\Element\Row as RowElement;
-use PhpOffice\PhpWord\Element\Table as TableElement;
-use PhpOffice\PhpWord\Shared\XMLWriter;
-use PhpOffice\PhpWord\Style\Cell as CellStyle;
-use PhpOffice\PhpWord\Style\Row as RowStyle;
-use PhpOffice\PhpWord\Writer\Word2007\Style\Cell as CellStyleWriter;
-use PhpOffice\PhpWord\Writer\Word2007\Style\Row as RowStyleWriter;
-use PhpOffice\PhpWord\Writer\Word2007\Style\Table as TableStyleWriter;
+use MunizEverton\PhpWord\Element\Cell as CellElement;
+use MunizEverton\PhpWord\Element\Row as RowElement;
+use MunizEverton\PhpWord\Element\Table as TableElement;
+use MunizEverton\PhpWord\Shared\XMLWriter;
+use MunizEverton\PhpWord\Style\Cell as CellStyle;
+use MunizEverton\PhpWord\Style\Row as RowStyle;
+use MunizEverton\PhpWord\Writer\Word2007\Style\Cell as CellStyleWriter;
+use MunizEverton\PhpWord\Writer\Word2007\Style\Row as RowStyleWriter;
+use MunizEverton\PhpWord\Writer\Word2007\Style\Table as TableStyleWriter;
 
 /**
  * Table element writer
@@ -73,8 +73,8 @@ class Table extends AbstractElement
     /**
      * Write column.
      *
-     * @param \PhpOffice\PhpWord\Shared\XMLWriter $xmlWriter
-     * @param \PhpOffice\PhpWord\Element\Table $element
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Element\Table $element
      * @return void
      */
     private function writeColumns(XMLWriter $xmlWriter, TableElement $element)
@@ -110,8 +110,8 @@ class Table extends AbstractElement
     /**
      * Write row.
      *
-     * @param \PhpOffice\PhpWord\Shared\XMLWriter $xmlWriter
-     * @param \PhpOffice\PhpWord\Element\Row $row
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Element\Row $row
      * @return void
      */
     private function writeRow(XMLWriter $xmlWriter, RowElement $row)
@@ -137,8 +137,8 @@ class Table extends AbstractElement
     /**
      * Write cell.
      *
-     * @param \PhpOffice\PhpWord\Shared\XMLWriter $xmlWriter
-     * @param \PhpOffice\PhpWord\Element\Cell $cell
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Element\Cell $cell
      * @return void
      */
     private function writeCell(XMLWriter $xmlWriter, CellElement $cell)

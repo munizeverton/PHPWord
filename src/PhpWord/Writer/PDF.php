@@ -8,18 +8,18 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PhpWord
+ * @link        https://github.com/MunizEverton/PhpWord
  * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer;
+namespace MunizEverton\PhpWord\Writer;
 
-use PhpOffice\PhpWord\Exception\Exception;
-use PhpOffice\PhpWord\PhpWord;
-use PhpOffice\PhpWord\Settings;
+use MunizEverton\PhpWord\Exception\Exception;
+use MunizEverton\PhpWord\PhpWord;
+use MunizEverton\PhpWord\Settings;
 
 /**
  * PDF Writer
@@ -31,15 +31,15 @@ class PDF
     /**
      * The wrapper for the requested PDF rendering engine
      *
-     * @var \PhpOffice\PhpWord\Writer\PDF\AbstractRenderer
+     * @var \MunizEverton\PhpWord\Writer\PDF\AbstractRenderer
      */
     private $renderer = null;
 
     /**
      * Instantiate a new renderer of the configured type within this container class
      *
-     * @param \PhpOffice\PhpWord\PhpWord $phpWord
-     * @throws \PhpOffice\PhpWord\Exception\Exception
+     * @param \MunizEverton\PhpWord\PhpWord $phpWord
+     * @throws \MunizEverton\PhpWord\Exception\Exception
      */
     public function __construct(PhpWord $phpWord)
     {

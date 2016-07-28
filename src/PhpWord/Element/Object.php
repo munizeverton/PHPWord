@@ -15,7 +15,7 @@
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Element;
+namespace MunizEverton\PhpWord\Element;
 
 use PhpOffice\PhpWord\Exception\InvalidObjectException;
 use PhpOffice\PhpWord\Style\Image as ImageStyle;

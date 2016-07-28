@@ -8,22 +8,22 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
+ * @link        https://github.com/MunizEverton/PHPWord
  * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\RTF\Element;
+namespace MunizEverton\PhpWord\Writer\RTF\Element;
 
-use PhpOffice\PhpWord\Shared\String;
-use PhpOffice\PhpWord\Style\Font as FontStyle;
-use PhpOffice\PhpWord\Style;
-use PhpOffice\PhpWord\Style\Paragraph as ParagraphStyle;
-use PhpOffice\PhpWord\Writer\HTML\Element\AbstractElement as HTMLAbstractElement;
-use PhpOffice\PhpWord\Writer\RTF\Style\Font as FontStyleWriter;
-use PhpOffice\PhpWord\Writer\RTF\Style\Paragraph as ParagraphStyleWriter;
+use MunizEverton\PhpWord\Shared\String;
+use MunizEverton\PhpWord\Style\Font as FontStyle;
+use MunizEverton\PhpWord\Style;
+use MunizEverton\PhpWord\Style\Paragraph as ParagraphStyle;
+use MunizEverton\PhpWord\Writer\HTML\Element\AbstractElement as HTMLAbstractElement;
+use MunizEverton\PhpWord\Writer\RTF\Style\Font as FontStyleWriter;
+use MunizEverton\PhpWord\Writer\RTF\Style\Paragraph as ParagraphStyleWriter;
 
 /**
  * Abstract RTF element writer
@@ -35,14 +35,14 @@ abstract class AbstractElement extends HTMLAbstractElement
     /**
      * Font style
      *
-     * @var \PhpOffice\PhpWord\Style\Font
+     * @var \MunizEverton\PhpWord\Style\Font
      */
     private $fontStyle;
 
     /**
      * Paragraph style
      *
-     * @var \PhpOffice\PhpWord\Style\Paragraph
+     * @var \MunizEverton\PhpWord\Style\Paragraph
      */
     private $paragraphStyle;
 
@@ -53,10 +53,10 @@ abstract class AbstractElement extends HTMLAbstractElement
      */
     protected function getStyles()
     {
-        /** @var \PhpOffice\PhpWord\Writer\RTF $parentWriter Type hint */
+        /** @var \MunizEverton\PhpWord\Writer\RTF $parentWriter Type hint */
         $parentWriter = $this->parentWriter;
 
-        /** @var \PhpOffice\PhpWord\Element\Text $element Type hint */
+        /** @var \MunizEverton\PhpWord\Element\Text $element Type hint */
         $element = $this->element;
 
         // Font style
@@ -140,7 +140,7 @@ abstract class AbstractElement extends HTMLAbstractElement
             return '';
         }
 
-        /** @var \PhpOffice\PhpWord\Writer\RTF $parentWriter Type hint */
+        /** @var \MunizEverton\PhpWord\Writer\RTF $parentWriter Type hint */
         $parentWriter = $this->parentWriter;
 
         // Create style writer and set color/name index

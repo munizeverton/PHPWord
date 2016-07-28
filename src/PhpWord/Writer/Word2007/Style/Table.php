@@ -8,18 +8,18 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
+ * @link        https://github.com/MunizEverton/PHPWord
  * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\Word2007\Style;
+namespace MunizEverton\PhpWord\Writer\Word2007\Style;
 
-use PhpOffice\PhpWord\Shared\XMLWriter;
-use PhpOffice\PhpWord\Style\Alignment as AlignmentStyle;
-use PhpOffice\PhpWord\Style\Table as TableStyle;
+use MunizEverton\PhpWord\Shared\XMLWriter;
+use MunizEverton\PhpWord\Style\Alignment as AlignmentStyle;
+use MunizEverton\PhpWord\Style\Table as TableStyle;
 
 /**
  * Table style writer
@@ -60,8 +60,8 @@ class Table extends AbstractStyle
     /**
      * Write full style.
      *
-     * @param \PhpOffice\PhpWord\Shared\XMLWriter $xmlWriter
-     * @param \PhpOffice\PhpWord\Style\Table $style
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Style\Table $style
      * @return void
      */
     private function writeStyle(XMLWriter $xmlWriter, TableStyle $style)
@@ -91,7 +91,7 @@ class Table extends AbstractStyle
     /**
      * Write width.
      *
-     * @param \PhpOffice\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
      * @param int $width
      * @param string $unit
      * @return void
@@ -107,8 +107,8 @@ class Table extends AbstractStyle
     /**
      * Write margin.
      *
-     * @param \PhpOffice\PhpWord\Shared\XMLWriter $xmlWriter
-     * @param \PhpOffice\PhpWord\Style\Table $style
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Style\Table $style
      * @return void
      */
     private function writeMargin(XMLWriter $xmlWriter, TableStyle $style)
@@ -127,8 +127,8 @@ class Table extends AbstractStyle
     /**
      * Write border.
      *
-     * @param \PhpOffice\PhpWord\Shared\XMLWriter $xmlWriter
-     * @param \PhpOffice\PhpWord\Style\Table $style
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Style\Table $style
      * @return void
      */
     private function writeBorder(XMLWriter $xmlWriter, TableStyle $style)
@@ -148,8 +148,8 @@ class Table extends AbstractStyle
     /**
      * Write row style.
      *
-     * @param \PhpOffice\PhpWord\Shared\XMLWriter $xmlWriter
-     * @param \PhpOffice\PhpWord\Style\Table $style
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Style\Table $style
      * @return void
      */
     private function writeFirstRow(XMLWriter $xmlWriter, TableStyle $style)
@@ -168,8 +168,8 @@ class Table extends AbstractStyle
     /**
      * Write shading.
      *
-     * @param \PhpOffice\PhpWord\Shared\XMLWriter $xmlWriter
-     * @param \PhpOffice\PhpWord\Style\Table $style
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Style\Table $style
      * @return void
      */
     private function writeShading(XMLWriter $xmlWriter, TableStyle $style)

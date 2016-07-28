@@ -8,21 +8,21 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
+ * @link        https://github.com/MunizEverton/PHPWord
  * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\Word2007\Element;
+namespace MunizEverton\PhpWord\Writer\Word2007\Element;
 
-use PhpOffice\PhpWord\Element\TOC as TOCElement;
-use PhpOffice\PhpWord\Shared\XMLWriter;
-use PhpOffice\PhpWord\Style\Font;
-use PhpOffice\PhpWord\Writer\Word2007\Style\Font as FontStyleWriter;
-use PhpOffice\PhpWord\Writer\Word2007\Style\Paragraph as ParagraphStyleWriter;
-use PhpOffice\PhpWord\Writer\Word2007\Style\Tab as TabStyleWriter;
+use MunizEverton\PhpWord\Element\TOC as TOCElement;
+use MunizEverton\PhpWord\Shared\XMLWriter;
+use MunizEverton\PhpWord\Style\Font;
+use MunizEverton\PhpWord\Writer\Word2007\Style\Font as FontStyleWriter;
+use MunizEverton\PhpWord\Writer\Word2007\Style\Paragraph as ParagraphStyleWriter;
+use MunizEverton\PhpWord\Writer\Word2007\Style\Tab as TabStyleWriter;
 
 /**
  * TOC element writer
@@ -66,9 +66,9 @@ class TOC extends AbstractElement
     /**
      * Write title
      *
-     * @param \PhpOffice\PhpWord\Shared\XMLWriter $xmlWriter
-     * @param \PhpOffice\PhpWord\Element\TOC $element
-     * @param \PhpOffice\PhpWord\Element\Title $title
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Element\TOC $element
+     * @param \MunizEverton\PhpWord\Element\Title $title
      * @param bool $writeFieldMark
      * @return void
      */
@@ -135,8 +135,8 @@ class TOC extends AbstractElement
     /**
      * Write style
      *
-     * @param \PhpOffice\PhpWord\Shared\XMLWriter $xmlWriter
-     * @param \PhpOffice\PhpWord\Element\TOC $element
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Element\TOC $element
      * @param int $indent
      * @return void
      */
@@ -182,8 +182,8 @@ class TOC extends AbstractElement
     /**
      * Write TOC Field.
      *
-     * @param \PhpOffice\PhpWord\Shared\XMLWriter $xmlWriter
-     * @param \PhpOffice\PhpWord\Element\TOC $element
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Element\TOC $element
      * @return void
      */
     private function writeFieldMark(XMLWriter $xmlWriter, TOCElement $element)

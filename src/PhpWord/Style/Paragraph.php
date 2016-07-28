@@ -8,17 +8,17 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
+ * @link        https://github.com/MunizEverton/PHPWord
  * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Style;
+namespace MunizEverton\PhpWord\Style;
 
-use PhpOffice\PhpWord\Exception\InvalidStyleException;
-use PhpOffice\PhpWord\Shared\String;
+use MunizEverton\PhpWord\Exception\InvalidStyleException;
+use MunizEverton\PhpWord\Shared\String;
 
 /**
  * Paragraph style
@@ -78,21 +78,21 @@ class Paragraph extends Border
     /**
      * Alignment
      *
-     * @var \PhpOffice\PhpWord\Style\Alignment
+     * @var \MunizEverton\PhpWord\Style\Alignment
      */
     private $alignment;
 
     /**
      * Indentation
      *
-     * @var \PhpOffice\PhpWord\Style\Indentation
+     * @var \MunizEverton\PhpWord\Style\Indentation
      */
     private $indentation;
 
     /**
      * Spacing
      *
-     * @var \PhpOffice\PhpWord\Style\Spacing
+     * @var \MunizEverton\PhpWord\Style\Spacing
      */
     private $spacing;
 
@@ -148,14 +148,14 @@ class Paragraph extends Border
     /**
      * Set of Custom Tab Stops
      *
-     * @var \PhpOffice\PhpWord\Style\Tab[]
+     * @var \MunizEverton\PhpWord\Style\Tab[]
      */
     private $tabs = array();
 
     /**
      * Shading
      *
-     * @var \PhpOffice\PhpWord\Style\Shading
+     * @var \MunizEverton\PhpWord\Style\Shading
      */
     private $shading;
 
@@ -294,7 +294,7 @@ class Paragraph extends Border
     /**
      * Get shading
      *
-     * @return \PhpOffice\PhpWord\Style\Indentation
+     * @return \MunizEverton\PhpWord\Style\Indentation
      */
     public function getIndentation()
     {
@@ -359,7 +359,7 @@ class Paragraph extends Border
     /**
      * Get spacing
      *
-     * @return \PhpOffice\PhpWord\Style\Spacing
+     * @return \MunizEverton\PhpWord\Style\Spacing
      * @todo Rename to getSpacing in 1.0
      */
     public function getSpace()
@@ -459,7 +459,7 @@ class Paragraph extends Border
      *
      * @param int|float|string $lineHeight
      * @return self
-     * @throws \PhpOffice\PhpWord\Exception\InvalidStyleException
+     * @throws \MunizEverton\PhpWord\Exception\InvalidStyleException
      */
     public function setLineHeight($lineHeight)
     {
@@ -617,7 +617,7 @@ class Paragraph extends Border
     /**
      * Get tabs
      *
-     * @return \PhpOffice\PhpWord\Style\Tab[]
+     * @return \MunizEverton\PhpWord\Style\Tab[]
      */
     public function getTabs()
     {
@@ -686,7 +686,7 @@ class Paragraph extends Border
     /**
      * Get shading
      *
-     * @return \PhpOffice\PhpWord\Style\Shading
+     * @return \MunizEverton\PhpWord\Style\Shading
      */
     public function getShading()
     {

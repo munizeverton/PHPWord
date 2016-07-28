@@ -7,12 +7,12 @@
  * @license     http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt LGPL
  */
 
-namespace PhpOffice\PhpWord\Reader;
+namespace MunizEverton\PhpWord\Reader;
 
-use PhpOffice\PhpWord\PhpWord;
-use PhpOffice\PhpWord\Shared\Drawing;
-use PhpOffice\PhpWord\Shared\OLERead;
-use PhpOffice\PhpWord\Style;
+use MunizEverton\PhpWord\PhpWord;
+use MunizEverton\PhpWord\Shared\Drawing;
+use MunizEverton\PhpWord\Shared\OLERead;
+use MunizEverton\PhpWord\Style;
 
 /**
  * Reader for Word97

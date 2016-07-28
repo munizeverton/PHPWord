@@ -7,11 +7,11 @@
  * @license     http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt LGPL
  */
 
-namespace PhpOffice\PhpWord;
+namespace MunizEverton\PhpWord;
 
-use PhpOffice\PhpWord\Exception\Exception;
-use PhpOffice\PhpWord\Reader\ReaderInterface;
-use PhpOffice\PhpWord\Writer\WriterInterface;
+use MunizEverton\PhpWord\Exception\Exception;
+use MunizEverton\PhpWord\Reader\ReaderInterface;
+use MunizEverton\PhpWord\Writer\WriterInterface;
 
 abstract class IOFactory
 {

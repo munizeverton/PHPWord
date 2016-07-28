@@ -15,11 +15,11 @@
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Reader\Word2007;
+namespace MunizEverton\PhpWord\Reader\Word2007;
 
-use PhpOffice\PhpWord\Metadata\DocInfo;
-use PhpOffice\PhpWord\PhpWord;
-use PhpOffice\PhpWord\Shared\XMLReader;
+use MunizEverton\PhpWord\Metadata\DocInfo;
+use MunizEverton\PhpWord\PhpWord;
+use MunizEverton\PhpWord\Shared\XMLReader;
 
 /**
  * Custom properties reader

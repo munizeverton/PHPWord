@@ -8,14 +8,14 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
+ * @link        https://github.com/MunizEverton/PHPWord
  * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Style;
+namespace MunizEverton\PhpWord\Style;
 
 /**
  * Shape style
@@ -50,35 +50,35 @@ class Shape extends AbstractStyle
     /**
      * Frame
      *
-     * @var \PhpOffice\PhpWord\Style\Frame
+     * @var \MunizEverton\PhpWord\Style\Frame
      */
     private $frame;
 
     /**
      * Fill
      *
-     * @var \PhpOffice\PhpWord\Style\Fill
+     * @var \MunizEverton\PhpWord\Style\Fill
      */
     private $fill;
 
     /**
      * Outline
      *
-     * @var \PhpOffice\PhpWord\Style\Outline
+     * @var \MunizEverton\PhpWord\Style\Outline
      */
     private $outline;
 
     /**
      * Shadow
      *
-     * @var \PhpOffice\PhpWord\Style\Shadow
+     * @var \MunizEverton\PhpWord\Style\Shadow
      */
     private $shadow;
 
     /**
      * 3D extrusion
      *
-     * @var \PhpOffice\PhpWord\Style\Extrusion
+     * @var \MunizEverton\PhpWord\Style\Extrusion
      */
     private $extrusion;
 
@@ -141,7 +141,7 @@ class Shape extends AbstractStyle
     /**
      * Get frame
      *
-     * @return \PhpOffice\PhpWord\Style\Frame
+     * @return \MunizEverton\PhpWord\Style\Frame
      */
     public function getFrame()
     {
@@ -164,7 +164,7 @@ class Shape extends AbstractStyle
     /**
      * Get fill
      *
-     * @return \PhpOffice\PhpWord\Style\Fill
+     * @return \MunizEverton\PhpWord\Style\Fill
      */
     public function getFill()
     {
@@ -187,7 +187,7 @@ class Shape extends AbstractStyle
     /**
      * Get outline
      *
-     * @return \PhpOffice\PhpWord\Style\Outline
+     * @return \MunizEverton\PhpWord\Style\Outline
      */
     public function getOutline()
     {
@@ -210,7 +210,7 @@ class Shape extends AbstractStyle
     /**
      * Get shadow
      *
-     * @return \PhpOffice\PhpWord\Style\Shadow
+     * @return \MunizEverton\PhpWord\Style\Shadow
      */
     public function getShadow()
     {
@@ -233,7 +233,7 @@ class Shape extends AbstractStyle
     /**
      * Get 3D extrusion
      *
-     * @return \PhpOffice\PhpWord\Style\Extrusion
+     * @return \MunizEverton\PhpWord\Style\Extrusion
      */
     public function getExtrusion()
     {

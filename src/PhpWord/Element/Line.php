@@ -15,9 +15,9 @@
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Element;
+namespace MunizEverton\PhpWord\Element;
 
-use PhpOffice\PhpWord\Style\Line as LineStyle;
+use MunizEverton\PhpWord\Style\Line as LineStyle;
 
 /**
  * Line element

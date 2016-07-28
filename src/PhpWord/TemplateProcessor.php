@@ -15,13 +15,13 @@
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord;
+namespace MunizEverton\PhpWord;
 
-use PhpOffice\PhpWord\Exception\CopyFileException;
-use PhpOffice\PhpWord\Exception\CreateTemporaryFileException;
-use PhpOffice\PhpWord\Exception\Exception;
-use PhpOffice\PhpWord\Shared\String;
-use PhpOffice\PhpWord\Shared\ZipArchive;
+use MunizEverton\PhpWord\Exception\CopyFileException;
+use MunizEverton\PhpWord\Exception\CreateTemporaryFileException;
+use MunizEverton\PhpWord\Exception\Exception;
+use MunizEverton\PhpWord\Shared\String;
+use MunizEverton\PhpWord\Shared\ZipArchive;
 
 class TemplateProcessor
 {

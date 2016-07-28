@@ -15,10 +15,10 @@
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Reader;
+namespace MunizEverton\PhpWord\Reader;
 
-use PhpOffice\PhpWord\PhpWord;
-use PhpOffice\PhpWord\Reader\RTF\Document;
+use MunizEverton\PhpWord\PhpWord;
+use MunizEverton\PhpWord\Reader\RTF\Document;
 
 /**
  * RTF Reader class

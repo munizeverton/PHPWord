@@ -2,15 +2,15 @@
 /**
  * PHPWord
  *
- * @link        https://github.com/PHPOffice/PHPWord
+ * @link        https://github.com/MunizEverton/PHPWord
  * @copyright   2014 PHPWord
  * @license     http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt LGPL
  */
 
-namespace PhpOffice\PhpWord\Shared;
+namespace MunizEverton\PhpWord\Shared;
 
 
-use PhpOffice\PhpWord\Exception\Exception;
+use MunizEverton\PhpWord\Exception\Exception;
 
 defined('IDENTIFIER_OLE') ||
 define('IDENTIFIER_OLE', pack('CCCCCCCC', 0xd0, 0xcf, 0x11, 0xe0, 0xa1, 0xb1, 0x1a, 0xe1));

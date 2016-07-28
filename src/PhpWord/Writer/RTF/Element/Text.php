@@ -8,14 +8,14 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
+ * @link        https://github.com/MunizEverton/PHPWord
  * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\RTF\Element;
+namespace MunizEverton\PhpWord\Writer\RTF\Element;
 
 /**
  * Text element RTF writer
@@ -31,7 +31,7 @@ class Text extends AbstractElement
      */
     public function write()
     {
-        /** @var \PhpOffice\PhpWord\Element\Text $element Type hint */
+        /** @var \MunizEverton\PhpWord\Element\Text $element Type hint */
         $element = $this->element;
         $elementClass = str_replace('\\Writer\\RTF', '', get_class($this));
         if (!$element instanceof $elementClass) {

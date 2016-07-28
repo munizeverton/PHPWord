@@ -8,17 +8,17 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
+ * @link        https://github.com/MunizEverton/PHPWord
  * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Shared;
+namespace MunizEverton\PhpWord\Shared;
 
-use PhpOffice\PhpWord\Exception\Exception;
-use PhpOffice\PhpWord\Settings;
+use MunizEverton\PhpWord\Exception\Exception;
+use MunizEverton\PhpWord\Settings;
 
 /**
  * ZipArchive wrapper
@@ -151,7 +151,7 @@ class ZipArchive
      * Close the active archive
      *
      * @return bool
-     * @throws \PhpOffice\PhpWord\Exception\Exception
+     * @throws \MunizEverton\PhpWord\Exception\Exception
      * @codeCoverageIgnore Can't find any test case. Uncomment when found.
      */
     public function close()
@@ -219,7 +219,7 @@ class ZipArchive
         /** @var \PclZip $zip Type hint */
         $zip = $this->zip;
 
-        // Bugfix GH-261 https://github.com/PHPOffice/PHPWord/pull/261
+        // Bugfix GH-261 https://github.com/MunizEverton/PHPWord/pull/261
         $realpathFilename = realpath($filename);
         if ($realpathFilename !== false) {
             $filename = $realpathFilename;

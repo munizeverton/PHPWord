@@ -42,7 +42,7 @@
     },
     "autoload": {
         "psr-4": {
-            "munizeverton\\PhpWord\\": "src/PhpWord"
+            "MunizEverton\\PhpWord\\": "src/PhpWord"
         }
     }
 }

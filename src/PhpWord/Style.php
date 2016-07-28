@@ -15,13 +15,13 @@
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord;
+namespace MunizEverton\PhpWord;
 
-use PhpOffice\PhpWord\Style\AbstractStyle;
-use PhpOffice\PhpWord\Style\Font;
-use PhpOffice\PhpWord\Style\Numbering;
-use PhpOffice\PhpWord\Style\Paragraph;
-use PhpOffice\PhpWord\Style\Table;
+use MunizEverton\PhpWord\Style\AbstractStyle;
+use MunizEverton\PhpWord\Style\Font;
+use MunizEverton\PhpWord\Style\Numbering;
+use MunizEverton\PhpWord\Style\Paragraph;
+use MunizEverton\PhpWord\Style\Table;
 
 /**
  * Style collection

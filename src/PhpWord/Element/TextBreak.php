@@ -15,10 +15,10 @@
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Element;
+namespace MunizEverton\PhpWord\Element;
 
-use PhpOffice\PhpWord\Style\Font;
-use PhpOffice\PhpWord\Style\Paragraph;
+use MunizEverton\PhpWord\Style\Font;
+use MunizEverton\PhpWord\Style\Paragraph;
 
 /**
  * Text break element

@@ -15,10 +15,10 @@
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord;
+namespace MunizEverton\PhpWord;
 
-use PhpOffice\PhpWord\Element\Section;
-use PhpOffice\PhpWord\Exception\Exception;
+use MunizEverton\PhpWord\Element\Section;
+use MunizEverton\PhpWord\Exception\Exception;
 
 /**
  * PHPWord main class

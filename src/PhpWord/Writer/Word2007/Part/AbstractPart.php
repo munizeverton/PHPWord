@@ -8,18 +8,18 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
+ * @link        https://github.com/MunizEverton/PHPWord
  * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\Word2007\Part;
+namespace MunizEverton\PhpWord\Writer\Word2007\Part;
 
-use PhpOffice\PhpWord\Exception\Exception;
-use PhpOffice\PhpWord\Shared\XMLWriter;
-use PhpOffice\PhpWord\Writer\AbstractWriter;
+use MunizEverton\PhpWord\Exception\Exception;
+use MunizEverton\PhpWord\Shared\XMLWriter;
+use MunizEverton\PhpWord\Writer\AbstractWriter;
 
 /**
  * Word2007 writer part abstract class
@@ -29,7 +29,7 @@ abstract class AbstractPart
     /**
      * Parent writer
      *
-     * @var \PhpOffice\PhpWord\Writer\AbstractWriter
+     * @var \MunizEverton\PhpWord\Writer\AbstractWriter
      */
     protected $parentWriter;
 
@@ -48,7 +48,7 @@ abstract class AbstractPart
     /**
      * Set parent writer.
      *
-     * @param \PhpOffice\PhpWord\Writer\AbstractWriter $writer
+     * @param \MunizEverton\PhpWord\Writer\AbstractWriter $writer
      * @return void
      */
     public function setParentWriter(AbstractWriter $writer = null)
@@ -59,8 +59,8 @@ abstract class AbstractPart
     /**
      * Get parent writer
      *
-     * @return \PhpOffice\PhpWord\Writer\AbstractWriter
-     * @throws \PhpOffice\PhpWord\Exception\Exception
+     * @return \MunizEverton\PhpWord\Writer\AbstractWriter
+     * @throws \MunizEverton\PhpWord\Exception\Exception
      */
     public function getParentWriter()
     {
@@ -74,7 +74,7 @@ abstract class AbstractPart
     /**
      * Get XML Writer
      *
-     * @return \PhpOffice\PhpWord\Shared\XMLWriter
+     * @return \MunizEverton\PhpWord\Shared\XMLWriter
      */
     protected function getXmlWriter()
     {

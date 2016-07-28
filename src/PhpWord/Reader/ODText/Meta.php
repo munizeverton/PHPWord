@@ -15,10 +15,10 @@
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Reader\ODText;
+namespace MunizEverton\PhpWord\Reader\ODText;
 
-use PhpOffice\PhpWord\PhpWord;
-use PhpOffice\PhpWord\Shared\XMLReader;
+use MunizEverton\PhpWord\PhpWord;
+use MunizEverton\PhpWord\Shared\XMLReader;
 
 /**
  * Meta reader

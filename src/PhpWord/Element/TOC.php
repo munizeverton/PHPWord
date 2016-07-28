@@ -15,11 +15,11 @@
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL
  */
 
-namespace PhpOffice\PhpWord\Element;
+namespace MunizEverton\PhpWord\Element;
 
-use PhpOffice\PhpWord\PhpWord;
-use PhpOffice\PhpWord\Style\Font;
-use PhpOffice\PhpWord\Style\TOC as TOCStyle;
+use MunizEverton\PhpWord\PhpWord;
+use MunizEverton\PhpWord\Style\Font;
+use MunizEverton\PhpWord\Style\TOC as TOCStyle;
 
 /**
  * Table of contents
