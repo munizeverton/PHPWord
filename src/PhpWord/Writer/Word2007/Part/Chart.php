@@ -208,6 +208,30 @@ class Chart extends AbstractPart
             } else {
                 $this->writeSeriesItem($xmlWriter, 'cat', $categories);
                 $this->writeSeriesItem($xmlWriter, 'val', $values);
+
+                $elementColors = $this->element->getColors();
+                if($elementColors !== null) {
+                    $colorIndex = 0;
+                    foreach ($elementColors as $color) {
+                        $xmlWriter->startElement('c:dPt');
+
+                        $xmlWriter->writeElementBlock('c:idx', 'val', $colorIndex);
+
+                        $xmlWriter->startElement('c:spPr');
+
+                        $xmlWriter->startElement('a:solidFill');
+
+                        $xmlWriter->writeElementBlock('a:srgbClr', 'val', $color);
+
+                        $xmlWriter->endElement(); // a:solidFill
+
+                        $xmlWriter->endElement(); // c:spPr
+
+                        $xmlWriter->endElement(); // c:dPt
+
+                        $colorIndex++;
+                    }
+                }
             }
 
             $xmlWriter->endElement(); // c:ser
