@@ -8,21 +8,21 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
+ * @link        https://github.com/MunizEverton/PHPWord
  * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
 namespace MunizEverton\PhpWord\Element;
 
-use PhpOffice\PhpWord\Exception\CreateTemporaryFileException;
-use PhpOffice\PhpWord\Exception\InvalidImageException;
-use PhpOffice\PhpWord\Exception\UnsupportedImageTypeException;
-use PhpOffice\PhpWord\Settings;
-use PhpOffice\PhpWord\Shared\ZipArchive;
-use PhpOffice\PhpWord\Style\Image as ImageStyle;
+use MunizEverton\PhpWord\Exception\CreateTemporaryFileException;
+use MunizEverton\PhpWord\Exception\InvalidImageException;
+use MunizEverton\PhpWord\Exception\UnsupportedImageTypeException;
+use MunizEverton\PhpWord\Settings;
+use MunizEverton\PhpWord\Shared\ZipArchive;
+use MunizEverton\PhpWord\Style\Image as ImageStyle;
 
 /**
  * Image element
@@ -126,8 +126,8 @@ class Image extends AbstractElement
      * @param string $source
      * @param mixed $style
      * @param boolean $watermark
-     * @throws \PhpOffice\PhpWord\Exception\InvalidImageException
-     * @throws \PhpOffice\PhpWord\Exception\UnsupportedImageTypeException
+     * @throws \MunizEverton\PhpWord\Exception\InvalidImageException
+     * @throws \MunizEverton\PhpWord\Exception\UnsupportedImageTypeException
      */
     public function __construct($source, $style = null, $watermark = false)
     {
@@ -366,8 +366,8 @@ class Image extends AbstractElement
      *
      * @param string $source
      * @return void
-     * @throws \PhpOffice\PhpWord\Exception\InvalidImageException
-     * @throws \PhpOffice\PhpWord\Exception\UnsupportedImageTypeException
+     * @throws \MunizEverton\PhpWord\Exception\InvalidImageException
+     * @throws \MunizEverton\PhpWord\Exception\UnsupportedImageTypeException
      */
     private function checkImage($source)
     {
@@ -426,7 +426,7 @@ class Image extends AbstractElement
      *
      * @param string $source
      * @return array|null
-     * @throws \PhpOffice\PhpWord\Exception\CreateTemporaryFileException
+     * @throws \MunizEverton\PhpWord\Exception\CreateTemporaryFileException
      */
     private function getArchiveImageSize($source)
     {

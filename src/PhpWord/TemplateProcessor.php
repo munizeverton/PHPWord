@@ -8,9 +8,9 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
+ * @link        https://github.com/MunizEverton/PHPWord
  * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
@@ -65,8 +65,8 @@ class TemplateProcessor
      *
      * @param string $documentTemplate The fully qualified template filename.
      *
-     * @throws \PhpOffice\PhpWord\Exception\CreateTemporaryFileException
-     * @throws \PhpOffice\PhpWord\Exception\CopyFileException
+     * @throws \MunizEverton\PhpWord\Exception\CreateTemporaryFileException
+     * @throws \MunizEverton\PhpWord\Exception\CopyFileException
      */
     public function __construct($documentTemplate)
     {
@@ -110,7 +110,7 @@ class TemplateProcessor
      *
      * @return void
      *
-     * @throws \PhpOffice\PhpWord\Exception\Exception
+     * @throws \MunizEverton\PhpWord\Exception\Exception
      */
     public function applyXslStyleSheet($xslDOMDocument, $xslOptions = array(), $xslOptionsURI = '')
     {
@@ -183,7 +183,7 @@ class TemplateProcessor
      *
      * @return void
      *
-     * @throws \PhpOffice\PhpWord\Exception\Exception
+     * @throws \MunizEverton\PhpWord\Exception\Exception
      */
     public function cloneRow($search, $numberOfClones)
     {
@@ -313,7 +313,7 @@ class TemplateProcessor
      *
      * @return string
      *
-     * @throws \PhpOffice\PhpWord\Exception\Exception
+     * @throws \MunizEverton\PhpWord\Exception\Exception
      */
     public function save()
     {
@@ -356,7 +356,7 @@ class TemplateProcessor
          * Note: we do not use ``rename`` function here, because it looses file ownership data on Windows platform.
          * As a result, user cannot open the file directly getting "Access denied" message.
          *
-         * @see https://github.com/PHPOffice/PHPWord/issues/532
+         * @see https://github.com/MunizEverton/PHPWord/issues/532
          */
         copy($tempFileName, $fileName);
         unlink($tempFileName);
@@ -462,7 +462,7 @@ class TemplateProcessor
      *
      * @return integer
      *
-     * @throws \PhpOffice\PhpWord\Exception\Exception
+     * @throws \MunizEverton\PhpWord\Exception\Exception
      */
     protected function findRowStart($offset)
     {

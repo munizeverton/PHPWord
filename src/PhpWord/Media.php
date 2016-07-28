@@ -8,9 +8,9 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
+ * @link        https://github.com/MunizEverton/PHPWord
  * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
@@ -38,9 +38,9 @@ class Media
      * @param string $container section|headerx|footerx|footnote|endnote
      * @param string $mediaType image|object|link
      * @param string $source
-     * @param \PhpOffice\PhpWord\Element\Image $image
+     * @param \MunizEverton\PhpWord\Element\Image $image
      * @return integer
-     * @throws \PhpOffice\PhpWord\Exception\Exception
+     * @throws \MunizEverton\PhpWord\Exception\Exception
      * @since 0.9.2
      * @since 0.10.0
      */
@@ -201,7 +201,7 @@ class Media
      *
      * @param  string $src
      * @param  string $type
-     * @param  \PhpOffice\PhpWord\Element\Image $image
+     * @param  \MunizEverton\PhpWord\Element\Image $image
      * @return integer
      * @deprecated 0.10.0
      * @codeCoverageIgnore
@@ -255,7 +255,7 @@ class Media
      *
      * @param  integer $headerCount
      * @param  string $src
-     * @param  \PhpOffice\PhpWord\Element\Image $image
+     * @param  \MunizEverton\PhpWord\Element\Image $image
      * @return integer
      * @deprecated 0.10.0
      * @codeCoverageIgnore
@@ -295,7 +295,7 @@ class Media
      *
      * @param  integer $footerCount
      * @param  string $src
-     * @param  \PhpOffice\PhpWord\Element\Image $image
+     * @param  \MunizEverton\PhpWord\Element\Image $image
      * @return integer
      * @deprecated 0.10.0
      * @codeCoverageIgnore

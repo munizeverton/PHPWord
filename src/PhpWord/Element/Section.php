@@ -8,17 +8,17 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
+ * @link        https://github.com/MunizEverton/PHPWord
  * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
 namespace MunizEverton\PhpWord\Element;
 
-use PhpOffice\PhpWord\Exception\Exception;
-use PhpOffice\PhpWord\Style\Section as SectionStyle;
+use MunizEverton\PhpWord\Exception\Exception;
+use MunizEverton\PhpWord\Style\Section as SectionStyle;
 
 /**
  * Section
@@ -33,7 +33,7 @@ class Section extends AbstractContainer
     /**
      * Section style
      *
-     * @var \PhpOffice\PhpWord\Style\Section
+     * @var \MunizEverton\PhpWord\Style\Section
      */
     private $style;
 
@@ -81,7 +81,7 @@ class Section extends AbstractContainer
     /**
      * Get section style
      *
-     * @return \PhpOffice\PhpWord\Style\Section
+     * @return \MunizEverton\PhpWord\Style\Section
      */
     public function getStyle()
     {
@@ -156,7 +156,7 @@ class Section extends AbstractContainer
      * @param string $type
      * @param boolean $header
      * @return Header|Footer
-     * @throws \PhpOffice\PhpWord\Exception\Exception
+     * @throws \MunizEverton\PhpWord\Exception\Exception
      * @since 0.10.0
      */
     private function addHeaderFooter($type = Header::AUTO, $header = true)
@@ -168,7 +168,7 @@ class Section extends AbstractContainer
 
         if (in_array($type, array(Header::AUTO, Header::FIRST, Header::EVEN))) {
             $index = count($collection);
-            /** @var \PhpOffice\PhpWord\Element\AbstractContainer $container Type hint */
+            /** @var \MunizEverton\PhpWord\Element\AbstractContainer $container Type hint */
             $container = new $containerClass($this->sectionId, ++$index, $type);
             $container->setPhpWord($this->phpWord);
 
@@ -195,7 +195,7 @@ class Section extends AbstractContainer
     /**
      * Get section style
      *
-     * @return \PhpOffice\PhpWord\Style\Section
+     * @return \MunizEverton\PhpWord\Style\Section
      * @deprecated 0.12.0
      * @codeCoverageIgnore
      */
