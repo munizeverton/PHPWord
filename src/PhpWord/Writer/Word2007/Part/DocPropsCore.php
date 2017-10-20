@@ -8,14 +8,14 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\Word2007\Part;
+namespace MunizEverton\PhpWord\Writer\Word2007\Part;
 
 /**
  * Word2007 core document properties part writer: docProps/core.xml
@@ -54,13 +54,13 @@ class DocPropsCore extends AbstractPart
         // dcterms:created
         $xmlWriter->startElement('dcterms:created');
         $xmlWriter->writeAttribute('xsi:type', 'dcterms:W3CDTF');
-        $xmlWriter->text(date($this->dateFormat, $phpWord->getDocInfo()->getCreated()));
+        $xmlWriter->writeRaw(date($this->dateFormat, $phpWord->getDocInfo()->getCreated()));
         $xmlWriter->endElement();
 
         // dcterms:modified
         $xmlWriter->startElement('dcterms:modified');
         $xmlWriter->writeAttribute('xsi:type', 'dcterms:W3CDTF');
-        $xmlWriter->text(date($this->dateFormat, $phpWord->getDocInfo()->getModified()));
+        $xmlWriter->writeRaw(date($this->dateFormat, $phpWord->getDocInfo()->getModified()));
         $xmlWriter->endElement();
 
         $xmlWriter->endElement(); // cp:coreProperties

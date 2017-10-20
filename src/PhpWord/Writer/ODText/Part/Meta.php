@@ -8,17 +8,16 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\ODText\Part;
+namespace MunizEverton\PhpWord\Writer\ODText\Part;
 
-use PhpOffice\Common\XMLWriter;
-use PhpOffice\PhpWord\Settings;
+use MunizEverton\PhpWord\Shared\XMLWriter;
 
 /**
  * ODText meta part writer: meta.xml
@@ -87,7 +86,7 @@ class Meta extends AbstractPart
     /**
      * Write individual property
      *
-     * @param \PhpOffice\Common\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
      * @param string $property
      * @param string $value
      * @return void
@@ -101,11 +100,7 @@ class Meta extends AbstractPart
         // if ($type !== null) {
         //     $xmlWriter->writeAttribute('meta:value-type', $type);
         // }
-        if (Settings::isOutputEscapingEnabled()) {
-            $xmlWriter->text($value);
-        } else {
-            $xmlWriter->writeRaw($value);
-        }
+        $xmlWriter->writeRaw($value);
         $xmlWriter->endElement(); // meta:user-defined
     }
 }

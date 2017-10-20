@@ -8,17 +8,14 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Style;
-
-use PhpOffice\PhpWord\SimpleType\Jc;
-use PhpOffice\PhpWord\SimpleType\NumberFormat;
+namespace MunizEverton\PhpWord\Style;
 
 /**
  * Numbering level definition
@@ -44,7 +41,7 @@ class NumberingLevel extends AbstractStyle
     private $start = 1;
 
     /**
-     * Numbering format w:numFmt, one of PhpOffice\PhpWord\SimpleType\NumberFormat
+     * Numbering format bullet|decimal|upperRoman|lowerRoman|upperLetter|lowerLetter
      *
      * @var string
      * @link http://www.schemacentral.com/sc/ooxml/t-w_ST_NumberFormat.html
@@ -68,7 +65,7 @@ class NumberingLevel extends AbstractStyle
     private $pStyle;
 
     /**
-     * Content between numbering symbol and paragraph text w:suff
+     * Content between numbering symbol and paragraph text
      *
      * @var string tab|space|nothing
      * @link http://www.schemacentral.com/sc/ooxml/e-w_suff-1.html
@@ -84,11 +81,12 @@ class NumberingLevel extends AbstractStyle
     private $text;
 
     /**
-     * Justification, w:lvlJc
+     * Align left|center|right|both
      *
-     * @var string, one of PhpOffice\PhpWord\SimpleType\Jc
+     * @var string
+     * @link http://www.schemacentral.com/sc/ooxml/e-w_lvlJc-1.html
      */
-    private $alignment = '';
+    private $align;
 
     /**
      * Left
@@ -188,12 +186,13 @@ class NumberingLevel extends AbstractStyle
      */
     public function setFormat($value)
     {
-        $this->format = $this->setEnumVal($value, NumberFormat::values(), $this->format);
+        $enum = array('bullet', 'decimal', 'upperRoman', 'lowerRoman', 'upperLetter', 'lowerLetter');
+        $this->format = $this->setEnumVal($value, $enum, $this->format);
         return $this;
     }
 
     /**
-     * Get restart
+     * Get start
      *
      * @return integer
      */
@@ -203,7 +202,7 @@ class NumberingLevel extends AbstractStyle
     }
 
     /**
-     * Set restart
+     * Set start
      *
      * @param integer $value
      * @return self
@@ -282,55 +281,26 @@ class NumberingLevel extends AbstractStyle
     }
 
     /**
-     * @since 0.13.0
+     * Get align
      *
      * @return string
-     */
-    public function getAlignment()
-    {
-        return $this->alignment;
-    }
-
-    /**
-     * @since 0.13.0
-     *
-     * @param string $value
-     *
-     * @return self
-     */
-    public function setAlignment($value)
-    {
-        if (Jc::isValid($value)) {
-            $this->alignment = $value;
-        }
-
-        return $this;
-    }
-
-    /**
-     * @deprecated 0.13.0 Use the `getAlignment` method instead.
-     *
-     * @return string
-     *
-     * @codeCoverageIgnore
      */
     public function getAlign()
     {
-        return $this->getAlignment();
+        return $this->align;
     }
 
     /**
-     * @deprecated 0.13.0 Use the `setAlignment` method instead.
+     * Set align
      *
      * @param string $value
-     *
      * @return self
-     *
-     * @codeCoverageIgnore
      */
     public function setAlign($value)
     {
-        return $this->setAlignment($value);
+        $enum = array('left', 'center', 'right', 'both');
+        $this->align = $this->setEnumVal($value, $enum, $this->align);
+        return $this;
     }
 
     /**

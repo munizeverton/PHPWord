@@ -8,14 +8,14 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord;
+namespace MunizEverton\PhpWord;
 
 /**
  * PHPWord settings class
@@ -31,7 +31,7 @@ class Settings
      */
     const ZIPARCHIVE = 'ZipArchive';
     const PCLZIP     = 'PclZip';
-    const OLD_LIB    = 'PhpOffice\\PhpWord\\Shared\\ZipArchive'; // @deprecated 0.11
+    const OLD_LIB    = 'MunizEverton\\PhpWord\\Shared\\ZipArchive'; // @deprecated 0.11
 
     /**
      * PDF rendering libraries
@@ -125,14 +125,6 @@ class Settings
      * @var string
      */
     private static $tempDir = '';
-
-    /**
-     * Enables built-in output escaping mechanism.
-     * Default value is `false` for backward compatibility with versions below 0.13.0.
-     *
-     * @var bool
-     */
-    private static $outputEscapingEnabled = false;
 
     /**
      * Return the compatibility option used by the XMLWriter
@@ -290,7 +282,6 @@ class Settings
      * @since 0.12.0
      *
      * @param string $tempDir The user defined path to temporary directory.
-     *
      * @return void
      */
     public static function setTempDir($tempDir)
@@ -314,30 +305,6 @@ class Settings
         }
 
         return $tempDir;
-    }
-
-    /**
-     * @since 0.13.0
-     *
-     * @return boolean
-     *
-     * @codeCoverageIgnore
-     */
-    public static function isOutputEscapingEnabled()
-    {
-        return self::$outputEscapingEnabled;
-    }
-
-    /**
-     * @since 0.13.0
-     *
-     * @param boolean $outputEscapingEnabled
-     *
-     * @codeCoverageIgnore
-     */
-    public static function setOutputEscapingEnabled($outputEscapingEnabled)
-    {
-        self::$outputEscapingEnabled = $outputEscapingEnabled;
     }
 
     /**
@@ -440,7 +407,6 @@ class Settings
      * Return the compatibility option used by the XMLWriter
      *
      * @deprecated 0.10.0
-     *
      * @codeCoverageIgnore
      */
     public static function getCompatibility()

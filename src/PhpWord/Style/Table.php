@@ -8,18 +8,18 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Style;
+namespace MunizEverton\PhpWord\Style;
 
-use PhpOffice\PhpWord\SimpleType\Jc;
-use PhpOffice\PhpWord\SimpleType\JcTable;
-
+/**
+ * Table style
+ */
 class Table extends Border
 {
     /**
@@ -39,7 +39,7 @@ class Table extends Border
     /**
      * Style for first row
      *
-     * @var \PhpOffice\PhpWord\Style\Table
+     * @var \MunizEverton\PhpWord\Style\Table
      */
     private $firstRowStyle;
 
@@ -102,14 +102,14 @@ class Table extends Border
     /**
      * Shading
      *
-     * @var \PhpOffice\PhpWord\Style\Shading
+     * @var \MunizEverton\PhpWord\Style\Shading
      */
     private $shading;
 
     /**
-     * @var string
+     * @var \MunizEverton\PhpWord\Style\Alignment Alignment
      */
-    private $alignment = '';
+    private $alignment;
 
     /**
      * @var int|float Width value
@@ -129,6 +129,8 @@ class Table extends Border
      */
     public function __construct($tableStyle = null, $firstRowStyle = null)
     {
+        $this->alignment = new Alignment();
+
         // Clone first row from table style, but with certain properties disabled
         if ($firstRowStyle !== null && is_array($firstRowStyle)) {
             $this->firstRowStyle = clone $this;
@@ -153,7 +155,7 @@ class Table extends Border
     /**
      * Set first row
      *
-     * @return \PhpOffice\PhpWord\Style\Table
+     * @return \MunizEverton\PhpWord\Style\Table
      */
     public function getFirstRow()
     {
@@ -471,7 +473,7 @@ class Table extends Border
     /**
      * Get shading
      *
-     * @return \PhpOffice\PhpWord\Style\Shading
+     * @return \MunizEverton\PhpWord\Style\Shading
      */
     public function getShading()
     {
@@ -492,55 +494,26 @@ class Table extends Border
     }
 
     /**
-     * @since 0.13.0
+     * Get alignment
      *
      * @return string
-     */
-    public function getAlignment()
-    {
-        return $this->alignment;
-    }
-
-    /**
-     * @since 0.13.0
-     *
-     * @param string $value
-     *
-     * @return self
-     */
-    public function setAlignment($value)
-    {
-        if (JcTable::isValid($value) || Jc::isValid($value)) {
-            $this->alignment = $value;
-        }
-
-        return $this;
-    }
-
-    /**
-     * @deprecated 0.13.0 Use the `getAlignment` method instead.
-     *
-     * @return string
-     *
-     * @codeCoverageIgnore
      */
     public function getAlign()
     {
-        return $this->getAlignment();
+        return $this->alignment->getValue();
     }
 
     /**
-     * @deprecated 0.13.0 Use the `setAlignment` method instead.
+     * Set alignment
      *
      * @param string $value
-     *
      * @return self
-     *
-     * @codeCoverageIgnore
      */
     public function setAlign($value = null)
     {
-        return $this->setAlignment($value);
+        $this->alignment->setValue($value);
+
+        return $this;
     }
 
     /**
@@ -601,7 +574,7 @@ class Table extends Border
      */
     private function getTableOnlyProperty($property)
     {
-        if (false === $this->isFirstRow) {
+        if ($this->isFirstRow === false) {
             return $this->$property;
         }
 
@@ -621,8 +594,8 @@ class Table extends Border
      */
     private function setTableOnlyProperty($property, $value, $isNumeric = true)
     {
-        if (false === $this->isFirstRow) {
-            if (true === $isNumeric) {
+        if ($this->isFirstRow === false) {
+            if ($isNumeric === true) {
                 $this->$property = $this->setNumericVal($value, $this->$property);
             } else {
                 $this->$property = $value;

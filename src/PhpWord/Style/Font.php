@@ -8,14 +8,14 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Style;
+namespace MunizEverton\PhpWord\Style;
 
 /**
  * Font style
@@ -211,28 +211,22 @@ class Font extends AbstractStyle
     /**
      * Paragraph style
      *
-     * @var \PhpOffice\PhpWord\Style\Paragraph
+     * @var \MunizEverton\PhpWord\Style\Paragraph
      */
     private $paragraph;
 
     /**
      * Shading
      *
-     * @var \PhpOffice\PhpWord\Style\Shading
+     * @var \MunizEverton\PhpWord\Style\Shading
      */
     private $shading;
 
     /**
-     * Right to left languages
+     * Right to left languages 
      * @var boolean
      */
     private $rtl = false;
-
-    /**
-     * Languages 
-     * @var \PhpOffice\PhpWord\Style\Language
-     */
-    private $lang;
 
     /**
      * Create new font style
@@ -282,7 +276,6 @@ class Font extends AbstractStyle
             'paragraph'     => $this->getParagraph(),
             'rtl'           => $this->isRTL(),
             'shading'       => $this->getShading(),
-            'lang'          => $this->getLang(),
         );
 
         return $styles;
@@ -622,7 +615,7 @@ class Font extends AbstractStyle
      * Set background
      *
      * @param string $value
-     * @return \PhpOffice\PhpWord\Style\Table
+     * @return \MunizEverton\PhpWord\Style\Table
      */
     public function setBgColor($value = null)
     {
@@ -724,7 +717,7 @@ class Font extends AbstractStyle
     /**
      * Get paragraph style
      *
-     * @return \PhpOffice\PhpWord\Style\Paragraph
+     * @return \MunizEverton\PhpWord\Style\Paragraph
      */
     public function getParagraph()
     {
@@ -732,7 +725,7 @@ class Font extends AbstractStyle
     }
 
     /**
-     * Set Paragraph
+     * Set shading
      *
      * @param mixed $value
      * @return self
@@ -770,7 +763,7 @@ class Font extends AbstractStyle
     /**
      * Get shading
      *
-     * @return \PhpOffice\PhpWord\Style\Shading
+     * @return \MunizEverton\PhpWord\Style\Shading
      */
     public function getShading()
     {
@@ -791,36 +784,9 @@ class Font extends AbstractStyle
     }
 
     /**
-     * Get language
-     *
-     * @return \PhpOffice\PhpWord\Style\Language
-     */
-    public function getLang()
-    {
-        return $this->lang;
-    }
-
-    /**
-     * Set language
-     *
-     * @param mixed $value
-     * @return self
-     */
-    public function setLang($value = null)
-    {
-        if (is_string($value) && $value != '') {
-            $value = new Language($value);
-        }
-        $this->setObjectVal($value, 'Language', $this->lang);
-        
-        return $this;
-    }
-
-    /**
      * Get bold
      *
      * @deprecated 0.10.0
-     *
      * @codeCoverageIgnore
      */
     public function getBold()
@@ -832,7 +798,6 @@ class Font extends AbstractStyle
      * Get italic
      *
      * @deprecated 0.10.0
-     *
      * @codeCoverageIgnore
      */
     public function getItalic()
@@ -844,7 +809,6 @@ class Font extends AbstractStyle
      * Get superscript
      *
      * @deprecated 0.10.0
-     *
      * @codeCoverageIgnore
      */
     public function getSuperScript()
@@ -856,7 +820,6 @@ class Font extends AbstractStyle
      * Get subscript
      *
      * @deprecated 0.10.0
-     *
      * @codeCoverageIgnore
      */
     public function getSubScript()
@@ -868,7 +831,6 @@ class Font extends AbstractStyle
      * Get strikethrough
      *
      * @deprecated 0.10.0
-     *
      * @codeCoverageIgnore
      */
     public function getStrikethrough()
@@ -880,7 +842,6 @@ class Font extends AbstractStyle
      * Get paragraph style
      *
      * @deprecated 0.11.0
-     *
      * @codeCoverageIgnore
      */
     public function getParagraphStyle()

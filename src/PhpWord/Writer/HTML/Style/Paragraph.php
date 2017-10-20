@@ -8,16 +8,14 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\HTML\Style;
-
-use PhpOffice\PhpWord\SimpleType\Jc;
+namespace MunizEverton\PhpWord\Writer\HTML\Style;
 
 /**
  * Paragraph style HTML writer
@@ -34,48 +32,14 @@ class Paragraph extends AbstractStyle
     public function write()
     {
         $style = $this->getStyle();
-        if (!$style instanceof \PhpOffice\PhpWord\Style\Paragraph) {
+        if (!$style instanceof \MunizEverton\PhpWord\Style\Paragraph) {
             return '';
         }
         $css = array();
 
         // Alignment
-        if ('' !== $style->getAlignment()) {
-            $textAlign = '';
-
-            switch ($style->getAlignment()) {
-                case Jc::START:
-                case Jc::NUM_TAB:
-                case Jc::LEFT:
-                    $textAlign = 'left';
-                    break;
-
-                case Jc::CENTER:
-                    $textAlign = 'center';
-                    break;
-
-                case Jc::END:
-                case Jc::MEDIUM_KASHIDA:
-                case Jc::HIGH_KASHIDA:
-                case Jc::LOW_KASHIDA:
-                case Jc::RIGHT:
-                    $textAlign = 'right';
-                    break;
-
-                case Jc::BOTH:
-                case Jc::DISTRIBUTE:
-                case Jc::THAI_DISTRIBUTE:
-                case Jc::JUSTIFY:
-                    $textAlign = 'justify';
-                    break;
-
-                default:
-                    $textAlign = 'left';
-                    break;
-            }
-
-            $css['text-align'] = $textAlign;
-        }
+        $align = $style->getAlign();
+        $css['text-align'] = $this->getValueIf(!is_null($align), $align);
 
         // Spacing
         $spacing = $style->getSpace();

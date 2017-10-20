@@ -8,27 +8,27 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\ODText\Part;
+namespace MunizEverton\PhpWord\Writer\ODText\Part;
 
-use PhpOffice\Common\XMLWriter;
-use PhpOffice\PhpWord\Element\Image;
-use PhpOffice\PhpWord\Element\Table;
-use PhpOffice\PhpWord\Element\Text;
-use PhpOffice\PhpWord\Element\TextRun;
-use PhpOffice\PhpWord\PhpWord;
-use PhpOffice\PhpWord\Style;
-use PhpOffice\PhpWord\Style\Font;
-use PhpOffice\PhpWord\Style\Paragraph;
-use PhpOffice\PhpWord\Style\Table as TableStyle;
-use PhpOffice\PhpWord\Writer\ODText\Element\Container;
-use PhpOffice\PhpWord\Writer\ODText\Style\Paragraph as ParagraphStyleWriter;
+use MunizEverton\PhpWord\Element\Image;
+use MunizEverton\PhpWord\Element\Table;
+use MunizEverton\PhpWord\Element\Text;
+use MunizEverton\PhpWord\Element\TextRun;
+use MunizEverton\PhpWord\PhpWord;
+use MunizEverton\PhpWord\Shared\XMLWriter;
+use MunizEverton\PhpWord\Style;
+use MunizEverton\PhpWord\Style\Font;
+use MunizEverton\PhpWord\Style\Paragraph;
+use MunizEverton\PhpWord\Style\Table as TableStyle;
+use MunizEverton\PhpWord\Writer\ODText\Element\Container;
+use MunizEverton\PhpWord\Writer\ODText\Style\Paragraph as ParagraphStyleWriter;
 
 /**
  * ODText content part writer: content.xml
@@ -110,7 +110,7 @@ class Content extends AbstractPart
      *
      * @since 0.11.0
      *
-     * @param \PhpOffice\Common\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
      * @return void
      */
     private function writeAutoStyles(XMLWriter $xmlWriter)
@@ -119,10 +119,10 @@ class Content extends AbstractPart
 
         $this->writeTextStyles($xmlWriter);
         foreach ($this->autoStyles as $element => $styles) {
-            $writerClass = 'PhpOffice\\PhpWord\\Writer\\ODText\\Style\\' . $element;
+            $writerClass = 'MunizEverton\\PhpWord\\Writer\\ODText\\Style\\' . $element;
             foreach ($styles as $style) {
 
-                /** @var \PhpOffice\PhpWord\Writer\ODText\Style\AbstractStyle $styleWriter Type hint */
+                /** @var \MunizEverton\PhpWord\Writer\ODText\Style\AbstractStyle $styleWriter Type hint */
                 $styleWriter = new $writerClass($xmlWriter, $style);
                 $styleWriter->write();
             }
@@ -134,7 +134,7 @@ class Content extends AbstractPart
     /**
      * Write automatic styles.
      *
-     * @param \PhpOffice\Common\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
      * @return void
      */
     private function writeTextStyles(XMLWriter $xmlWriter)
@@ -146,7 +146,7 @@ class Content extends AbstractPart
                 if ($style->isAuto() === true) {
                     $styleClass = str_replace('\\Style\\', '\\Writer\\ODText\\Style\\', get_class($style));
                     if (class_exists($styleClass)) {
-                        /** @var \PhpOffice\PhpWord\Writer\ODText\Style\AbstractStyle $styleWriter Type hint */
+                        /** @var \MunizEverton\PhpWord\Writer\ODText\Style\AbstractStyle $styleWriter Type hint */
                         $styleWriter = new $styleClass($xmlWriter, $style);
                         $styleWriter->write();
                     }
@@ -168,7 +168,7 @@ class Content extends AbstractPart
     /**
      * Get automatic styles.
      *
-     * @param \PhpOffice\PhpWord\PhpWord $phpWord
+     * @param \MunizEverton\PhpWord\PhpWord $phpWord
      * @return void
      */
     private function getAutoStyles(PhpWord $phpWord)
@@ -189,7 +189,7 @@ class Content extends AbstractPart
      *
      * Table style can be null or string of the style name
      *
-     * @param \PhpOffice\PhpWord\Element\AbstractContainer $container
+     * @param \MunizEverton\PhpWord\Element\AbstractContainer $container
      * @param int &$paragraphStyleCount
      * @param int &$fontStyleCount
      * @return void
@@ -223,7 +223,7 @@ class Content extends AbstractPart
     /**
      * Get style of individual element
      *
-     * @param \PhpOffice\PhpWord\Element\Text &$element
+     * @param \MunizEverton\PhpWord\Element\Text &$element
      * @param int &$paragraphStyleCount
      * @param int &$fontStyleCount
      * @return void

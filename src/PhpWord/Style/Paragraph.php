@@ -8,18 +8,16 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Style;
+namespace MunizEverton\PhpWord\Style;
 
-use PhpOffice\Common\Text;
-use PhpOffice\PhpWord\Exception\InvalidStyleException;
-use PhpOffice\PhpWord\SimpleType\Jc;
+use MunizEverton\PhpWord\Exception\InvalidStyleException;
 
 /**
  * Paragraph style
@@ -77,21 +75,23 @@ class Paragraph extends Border
     private $next;
 
     /**
-     * @var string
+     * Alignment
+     *
+     * @var \MunizEverton\PhpWord\Style\Alignment
      */
-    private $alignment = '';
+    private $alignment;
 
     /**
      * Indentation
      *
-     * @var \PhpOffice\PhpWord\Style\Indentation
+     * @var \MunizEverton\PhpWord\Style\Indentation
      */
     private $indentation;
 
     /**
      * Spacing
      *
-     * @var \PhpOffice\PhpWord\Style\Spacing
+     * @var \MunizEverton\PhpWord\Style\Spacing
      */
     private $spacing;
 
@@ -147,30 +147,24 @@ class Paragraph extends Border
     /**
      * Set of Custom Tab Stops
      *
-     * @var \PhpOffice\PhpWord\Style\Tab[]
+     * @var \MunizEverton\PhpWord\Style\Tab[]
      */
     private $tabs = array();
 
     /**
      * Shading
      *
-     * @var \PhpOffice\PhpWord\Style\Shading
+     * @var \MunizEverton\PhpWord\Style\Shading
      */
     private $shading;
-    
-    /**
-     * Ignore Spacing Above and Below When Using Identical Styles
-     *
-     * @var bool
-     */
-    private $contextualSpacing = false;
 
     /**
-     * Right to Left Paragraph Layout
-     *
-     * @var bool
+     * Create new instance
      */
-    private $bidi = false;
+    public function __construct()
+    {
+        $this->alignment = new Alignment();
+    }
 
     /**
      * Set Style value
@@ -181,10 +175,10 @@ class Paragraph extends Border
      */
     public function setStyleValue($key, $value)
     {
-        $key = Text::removeUnderscorePrefix($key);
-        if ('indent' == $key || 'hanging' == $key) {
+        $key = \MunizEverton\PhpWord\Shared\StringFormat::removeUnderscorePrefix($key);
+        if ($key == 'indent' || $key == 'hanging') {
             $value = $value * 720;
-        } elseif ('spacing' == $key) {
+        } elseif ($key == 'spacing') {
             $value += 240; // because line height of 1 matches 240 twips
         }
 
@@ -207,7 +201,7 @@ class Paragraph extends Border
             'name'              => $this->getStyleName(),
             'basedOn'           => $this->getBasedOn(),
             'next'              => $this->getNext(),
-            'alignment'         => $this->getAlignment(),
+            'alignment'         => $this->getAlign(),
             'indentation'       => $this->getIndentation(),
             'spacing'           => $this->getSpace(),
             'pagination'        => array(
@@ -222,63 +216,32 @@ class Paragraph extends Border
             ),
             'tabs'              => $this->getTabs(),
             'shading'           => $this->getShading(),
-            'contextualSpacing' => $this->hasContextualSpacing(),
-            'bidi'              => $this->isBidi(),
         );
 
         return $styles;
     }
 
     /**
-     * @since 0.13.0
+     * Get alignment
      *
      * @return string
-     */
-    public function getAlignment()
-    {
-        return $this->alignment;
-    }
-
-    /**
-     * @since 0.13.0
-     *
-     * @param string $value
-     *
-     * @return self
-     */
-    public function setAlignment($value)
-    {
-        if (Jc::isValid($value)) {
-            $this->alignment = $value;
-        }
-
-        return $this;
-    }
-
-    /**
-     * @deprecated 0.13.0 Use the `getAlignment` method instead.
-     *
-     * @return string
-     *
-     * @codeCoverageIgnore
      */
     public function getAlign()
     {
-        return $this->getAlignment();
+        return $this->alignment->getValue();
     }
 
     /**
-     * @deprecated 0.13.0 Use the `setAlignment` method instead.
+     * Set alignment
      *
      * @param string $value
-     *
      * @return self
-     *
-     * @codeCoverageIgnore
      */
     public function setAlign($value = null)
     {
-        return $this->setAlignment($value);
+        $this->alignment->setValue($value);
+
+        return $this;
     }
 
     /**
@@ -330,7 +293,7 @@ class Paragraph extends Border
     /**
      * Get shading
      *
-     * @return \PhpOffice\PhpWord\Style\Indentation
+     * @return \MunizEverton\PhpWord\Style\Indentation
      */
     public function getIndentation()
     {
@@ -395,7 +358,7 @@ class Paragraph extends Border
     /**
      * Get spacing
      *
-     * @return \PhpOffice\PhpWord\Style\Spacing
+     * @return \MunizEverton\PhpWord\Style\Spacing
      * @todo Rename to getSpacing in 1.0
      */
     public function getSpace()
@@ -494,10 +457,8 @@ class Paragraph extends Border
      * Set the line height
      *
      * @param int|float|string $lineHeight
-     *
      * @return self
-     *
-     * @throws \PhpOffice\PhpWord\Exception\InvalidStyleException
+     * @throws \MunizEverton\PhpWord\Exception\InvalidStyleException
      */
     public function setLineHeight($lineHeight)
     {
@@ -655,7 +616,7 @@ class Paragraph extends Border
     /**
      * Get tabs
      *
-     * @return \PhpOffice\PhpWord\Style\Tab[]
+     * @return \MunizEverton\PhpWord\Style\Tab[]
      */
     public function getTabs()
     {
@@ -681,7 +642,6 @@ class Paragraph extends Border
      * Get allow first/last line to display on a separate page setting
      *
      * @deprecated 0.10.0
-     *
      * @codeCoverageIgnore
      */
     public function getWidowControl()
@@ -693,7 +653,6 @@ class Paragraph extends Border
      * Get keep paragraph with next paragraph setting
      *
      * @deprecated 0.10.0
-     *
      * @codeCoverageIgnore
      */
     public function getKeepNext()
@@ -705,7 +664,6 @@ class Paragraph extends Border
      * Get keep all lines on one page setting
      *
      * @deprecated 0.10.0
-     *
      * @codeCoverageIgnore
      */
     public function getKeepLines()
@@ -717,7 +675,6 @@ class Paragraph extends Border
      * Get start paragraph on next page setting
      *
      * @deprecated 0.10.0
-     *
      * @codeCoverageIgnore
      */
     public function getPageBreakBefore()
@@ -728,7 +685,7 @@ class Paragraph extends Border
     /**
      * Get shading
      *
-     * @return \PhpOffice\PhpWord\Style\Shading
+     * @return \MunizEverton\PhpWord\Style\Shading
      */
     public function getShading()
     {
@@ -744,53 +701,6 @@ class Paragraph extends Border
     public function setShading($value = null)
     {
         $this->setObjectVal($value, 'Shading', $this->shading);
-
-        return $this;
-    }
-
-    /**
-     * Get contextualSpacing
-     *
-     * @return bool
-     */
-    public function hasContextualSpacing()
-    {
-        return $this->contextualSpacing;
-    }
-
-    /**
-     * Set contextualSpacing
-     *
-     * @param bool $contextualSpacing
-     * @return self
-     */
-    public function setContextualSpacing($contextualSpacing)
-    {
-        $this->contextualSpacing = $contextualSpacing;
-        
-        return $this;
-    }
-
-    /**
-     * Get bidirectional
-     *
-     * @return bool
-     */
-    public function isBidi()
-    {
-        return $this->bidi;
-    }
-
-    /**
-     * Set bidi
-     *
-     * @param bool $bidi
-     *            Set to true to write from right to left
-     * @return self
-     */
-    public function setBidi($bidi)
-    {
-        $this->bidi = $bidi;
 
         return $this;
     }

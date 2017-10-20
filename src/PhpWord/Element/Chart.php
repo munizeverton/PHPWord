@@ -8,16 +8,16 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Element;
+namespace MunizEverton\PhpWord\Element;
 
-use PhpOffice\PhpWord\Style\Chart as ChartStyle;
+use MunizEverton\PhpWord\Style\Chart as ChartStyle;
 
 /**
  * Chart element
@@ -50,7 +50,7 @@ class Chart extends AbstractElement
     /**
      * Chart style
      *
-     * @var \PhpOffice\PhpWord\Style\Chart
+     * @var \MunizEverton\PhpWord\Style\Chart
      */
     private $style;
 
@@ -121,7 +121,7 @@ class Chart extends AbstractElement
     /**
      * Get chart style
      *
-     * @return \PhpOffice\PhpWord\Style\Chart
+     * @return \MunizEverton\PhpWord\Style\Chart
      */
     public function getStyle()
     {

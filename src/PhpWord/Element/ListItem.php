@@ -8,17 +8,17 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Element;
+namespace MunizEverton\PhpWord\Element;
 
-use PhpOffice\Common\Text as CommonText;
-use PhpOffice\PhpWord\Style\ListItem as ListItemStyle;
+use MunizEverton\PhpWord\Shared\StringFormat;
+use MunizEverton\PhpWord\Style\ListItem as ListItemStyle;
 
 /**
  * List item element
@@ -28,14 +28,14 @@ class ListItem extends AbstractElement
     /**
      * Element style
      *
-     * @var \PhpOffice\PhpWord\Style\ListItem
+     * @var \MunizEverton\PhpWord\Style\ListItem
      */
     private $style;
 
     /**
      * Text object
      *
-     * @var \PhpOffice\PhpWord\Element\Text
+     * @var \MunizEverton\PhpWord\Element\Text
      */
     private $textObject;
 
@@ -57,7 +57,7 @@ class ListItem extends AbstractElement
      */
     public function __construct($text, $depth = 0, $fontStyle = null, $listStyle = null, $paragraphStyle = null)
     {
-        $this->textObject = new Text(CommonText::toUTF8($text), $fontStyle, $paragraphStyle);
+        $this->textObject = new Text(StringFormat::toUTF8($text), $fontStyle, $paragraphStyle);
         $this->depth = $depth;
 
         // Version >= 0.10.0 will pass numbering style name. Older version will use old method
@@ -71,7 +71,7 @@ class ListItem extends AbstractElement
     /**
      * Get style
      *
-     * @return \PhpOffice\PhpWord\Style\ListItem
+     * @return \MunizEverton\PhpWord\Style\ListItem
      */
     public function getStyle()
     {
@@ -81,7 +81,7 @@ class ListItem extends AbstractElement
     /**
      * Get Text object
      *
-     * @return \PhpOffice\PhpWord\Element\Text
+     * @return \MunizEverton\PhpWord\Element\Text
      */
     public function getTextObject()
     {

@@ -1,25 +1,17 @@
 <?php
 /**
- * This file is part of PHPWord - A pure PHP library for reading and writing
- * word processing documents.
+ * PHPWord
  *
- * PHPWord is free software distributed under the terms of the GNU Lesser
- * General Public License version 3 as published by the Free Software Foundation.
- *
- * For the full copyright and license information, please read the LICENSE
- * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
- *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
- * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2014 PHPWord
+ * @license     http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt LGPL
  */
 
-namespace PhpOffice\PhpWord;
+namespace MunizEverton\PhpWord;
 
-use PhpOffice\PhpWord\Exception\Exception;
-use PhpOffice\PhpWord\Reader\ReaderInterface;
-use PhpOffice\PhpWord\Writer\WriterInterface;
+use MunizEverton\PhpWord\Exception\Exception;
+use MunizEverton\PhpWord\Reader\ReaderInterface;
+use MunizEverton\PhpWord\Writer\WriterInterface;
 
 abstract class IOFactory
 {
@@ -28,10 +20,8 @@ abstract class IOFactory
      *
      * @param PhpWord $phpWord
      * @param string $name
-     *
      * @return WriterInterface
-     *
-     * @throws \PhpOffice\PhpWord\Exception\Exception
+     * @throws \MunizEverton\PhpWord\Exception\Exception
      */
     public static function createWriter(PhpWord $phpWord, $name = 'Word2007')
     {
@@ -39,7 +29,7 @@ abstract class IOFactory
             throw new Exception("\"{$name}\" is not a valid writer.");
         }
 
-        $fqName = "PhpOffice\\PhpWord\\Writer\\{$name}";
+        $fqName = "MunizEverton\\PhpWord\\Writer\\{$name}";
 
         return new $fqName($phpWord);
     }
@@ -48,9 +38,7 @@ abstract class IOFactory
      * Create new reader
      *
      * @param string $name
-     *
      * @return ReaderInterface
-     *
      * @throws Exception
      */
     public static function createReader($name = 'Word2007')
@@ -63,15 +51,13 @@ abstract class IOFactory
      *
      * @param string $type
      * @param string $name
-     * @param \PhpOffice\PhpWord\PhpWord $phpWord
-     *
-     * @return \PhpOffice\PhpWord\Writer\WriterInterface|\PhpOffice\PhpWord\Reader\ReaderInterface
-     *
-     * @throws \PhpOffice\PhpWord\Exception\Exception
+     * @param \MunizEverton\PhpWord\PhpWord $phpWord
+     * @return \MunizEverton\PhpWord\Writer\WriterInterface|\MunizEverton\PhpWord\Reader\ReaderInterface
+     * @throws \MunizEverton\PhpWord\Exception\Exception
      */
     private static function createObject($type, $name, $phpWord = null)
     {
-        $class = "PhpOffice\\PhpWord\\{$type}\\{$name}";
+        $class = "MunizEverton\\PhpWord\\{$type}\\{$name}";
         if (class_exists($class) && self::isConcreteClass($class)) {
             return new $class($phpWord);
         } else {
@@ -83,11 +69,11 @@ abstract class IOFactory
      *
      * @param string $filename The name of the file
      * @param string $readerName
-     * @return \PhpOffice\PhpWord\PhpWord $phpWord
+     * @return \MunizEverton\PhpWord\PhpWord $phpWord
      */
     public static function load($filename, $readerName = 'Word2007')
     {
-        /** @var \PhpOffice\PhpWord\Reader\ReaderInterface $reader */
+        /** @var \MunizEverton\PhpWord\Reader\ReaderInterface $reader */
         $reader = self::createReader($readerName);
         return $reader->load($filename);
     }

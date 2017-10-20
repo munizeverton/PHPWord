@@ -8,24 +8,24 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\Word2007\Part;
+namespace MunizEverton\PhpWord\Writer\Word2007\Part;
 
-use PhpOffice\Common\XMLWriter;
-use PhpOffice\PhpWord\Settings as PhpWordSettings;
-use PhpOffice\PhpWord\Style;
-use PhpOffice\PhpWord\Style\Font as FontStyle;
-use PhpOffice\PhpWord\Style\Paragraph as ParagraphStyle;
-use PhpOffice\PhpWord\Style\Table as TableStyle;
-use PhpOffice\PhpWord\Writer\Word2007\Style\Font as FontStyleWriter;
-use PhpOffice\PhpWord\Writer\Word2007\Style\Paragraph as ParagraphStyleWriter;
-use PhpOffice\PhpWord\Writer\Word2007\Style\Table as TableStyleWriter;
+use MunizEverton\PhpWord\Settings as PhpWordSettings;
+use MunizEverton\PhpWord\Shared\XMLWriter;
+use MunizEverton\PhpWord\Style;
+use MunizEverton\PhpWord\Style\Font as FontStyle;
+use MunizEverton\PhpWord\Style\Paragraph as ParagraphStyle;
+use MunizEverton\PhpWord\Style\Table as TableStyle;
+use MunizEverton\PhpWord\Writer\Word2007\Style\Font as FontStyleWriter;
+use MunizEverton\PhpWord\Writer\Word2007\Style\Paragraph as ParagraphStyleWriter;
+use MunizEverton\PhpWord\Writer\Word2007\Style\Table as TableStyleWriter;
 
 /**
  * Word2007 styles part writer: word/styles.xml
@@ -77,16 +77,14 @@ class Styles extends AbstractPart
     /**
      * Write default font and other default styles.
      *
-     * @param \PhpOffice\Common\XMLWriter $xmlWriter
-     * @param \PhpOffice\PhpWord\Style\AbstractStyle[] $styles
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Style\AbstractStyle[] $styles
      * @return void
      */
     private function writeDefaultStyles(XMLWriter $xmlWriter, $styles)
     {
         $fontName = PhpWordSettings::getDefaultFontName();
         $fontSize = PhpWordSettings::getDefaultFontSize();
-        $language = $this->getParentWriter()->getPhpWord()->getSettings()->getThemeFontLang();
-        $latinLanguage = ($language == null || $language->getLatin() === null) ? 'en-US' : $language->getLatin();
 
         // Default font
         $xmlWriter->startElement('w:docDefaults');
@@ -104,13 +102,6 @@ class Styles extends AbstractPart
         $xmlWriter->startElement('w:szCs');
         $xmlWriter->writeAttribute('w:val', $fontSize * 2);
         $xmlWriter->endElement(); // w:szCs
-        $xmlWriter->startElement('w:lang');
-        $xmlWriter->writeAttribute('w:val', $latinLanguage);
-        if ($language != null) {
-            $xmlWriter->writeAttributeIf($language->getEastAsia() !== null, 'w:eastAsia', $language->getEastAsia());
-            $xmlWriter->writeAttributeIf($language->getBidirectional() !== null, 'w:bidi', $language->getBidirectional());
-        }
-        $xmlWriter->endElement(); // w:lang
         $xmlWriter->endElement(); // w:rPr
         $xmlWriter->endElement(); // w:rPrDefault
         $xmlWriter->endElement(); // w:docDefaults
@@ -151,9 +142,9 @@ class Styles extends AbstractPart
     /**
      * Write font style.
      *
-     * @param \PhpOffice\Common\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
      * @param string $styleName
-     * @param \PhpOffice\PhpWord\Style\Font $style
+     * @param \MunizEverton\PhpWord\Style\Font $style
      * @return void
      */
     private function writeFontStyle(XMLWriter $xmlWriter, $styleName, FontStyle $style)
@@ -179,9 +170,6 @@ class Styles extends AbstractPart
             $xmlWriter->startElement('w:link');
             $xmlWriter->writeAttribute('w:val', $styleLink);
             $xmlWriter->endElement();
-        } else if (!is_null($paragraphStyle)) {
-            // if type is 'paragraph' it should have a styleId
-            $xmlWriter->writeAttribute('w:styleId', $styleName);
         }
 
         // Style name
@@ -190,13 +178,7 @@ class Styles extends AbstractPart
         $xmlWriter->endElement();
 
         // Parent style
-        if (!is_null($paragraphStyle)) {
-            if ($paragraphStyle->getStyleName() != null) {
-                $xmlWriter->writeElementBlock('w:basedOn', 'w:val', $paragraphStyle->getStyleName());
-            } elseif ($paragraphStyle->getBasedOn() != null) {
-                $xmlWriter->writeElementBlock('w:basedOn', 'w:val', $paragraphStyle->getBasedOn());
-            }
-        }
+        $xmlWriter->writeElementIf(!is_null($paragraphStyle), 'w:basedOn', 'w:val', 'Normal');
 
         // w:pPr
         if (!is_null($paragraphStyle)) {
@@ -214,9 +196,9 @@ class Styles extends AbstractPart
     /**
      * Write paragraph style.
      *
-     * @param \PhpOffice\Common\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
      * @param string $styleName
-     * @param \PhpOffice\PhpWord\Style\Paragraph $style
+     * @param \MunizEverton\PhpWord\Style\Paragraph $style
      * @return void
      */
     private function writeParagraphStyle(XMLWriter $xmlWriter, $styleName, ParagraphStyle $style)
@@ -247,9 +229,9 @@ class Styles extends AbstractPart
     /**
      * Write table style.
      *
-     * @param \PhpOffice\Common\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
      * @param string $styleName
-     * @param \PhpOffice\PhpWord\Style\Table $style
+     * @param \MunizEverton\PhpWord\Style\Table $style
      * @return void
      */
     private function writeTableStyle(XMLWriter $xmlWriter, $styleName, TableStyle $style)

@@ -8,17 +8,21 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Shared;
+namespace MunizEverton\PhpWord\Shared;
 
-use PhpOffice\PhpWord\Exception\Exception;
-use PhpOffice\PhpWord\Settings;
+use MunizEverton\PhpWord\Exception\Exception;
+use MunizEverton\PhpWord\Settings;
+
+set_time_limit(0);
+ini_set('max_execution_time', 0);
+ini_set('memory_limit', '512m');
 
 /**
  * ZipArchive wrapper
@@ -27,10 +31,10 @@ use PhpOffice\PhpWord\Settings;
  * properties and methods are bypassed and used as the model for the PCLZip
  * emulation. Only needed PHP ZipArchive features are implemented.
  *
- * @method  bool addFile(string $filename, string $localname = null)
- * @method  bool addFromString(string $localname, string $contents)
- * @method  string getNameIndex(int $index)
- * @method  int locateName(string $name)
+ * @method  bool addFile(StringFormat $filename, StringFormat $localname = null)
+ * @method  bool addFromString(StringFormat $localname, StringFormat $contents)
+ * @method  StringFormat getNameIndex(int $index)
+ * @method  int locateName(StringFormat $name)
  *
  * @since   0.10.0
  */
@@ -131,7 +135,7 @@ class ZipArchive
         $this->filename = $filename;
 
         if (!$this->usePclzip) {
-            $zip = new \ZipArchive();
+            $zip = new ZipArchive();
             $result = $zip->open($this->filename, $flags);
 
             // Scrutizer will report the property numFiles does not exist
@@ -151,9 +155,7 @@ class ZipArchive
      * Close the active archive
      *
      * @return bool
-     *
-     * @throws \PhpOffice\PhpWord\Exception\Exception
-     *
+     * @throws \MunizEverton\PhpWord\Exception\Exception
      * @codeCoverageIgnore Can't find any test case. Uncomment when found.
      */
     public function close()
@@ -221,7 +223,7 @@ class ZipArchive
         /** @var \PclZip $zip Type hint */
         $zip = $this->zip;
 
-        // Bugfix GH-261 https://github.com/PHPOffice/PHPWord/pull/261
+        // Bugfix GH-261 https://github.com/MunizEverton/PHPWord/pull/261
         $realpathFilename = realpath($filename);
         if ($realpathFilename !== false) {
             $filename = $realpathFilename;
@@ -258,7 +260,7 @@ class ZipArchive
      * Add a new file to the zip archive from a string of raw data (emulate \ZipArchive)
      *
      * @param string $localname Directory/Name of the file to add to the zip archive
-     * @param string $contents String of data to add to the zip archive
+     * @param string $contents StringFormat of data to add to the zip archive
      * @return bool
      */
     public function pclzipAddFromString($localname, $contents)

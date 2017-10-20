@@ -8,14 +8,14 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\ODText\Style;
+namespace MunizEverton\PhpWord\Writer\ODText\Style;
 
 /**
  * Font style writer
@@ -32,7 +32,7 @@ class Paragraph extends AbstractStyle
     public function write()
     {
         $style = $this->getStyle();
-        if (!$style instanceof \PhpOffice\PhpWord\Style\Paragraph) {
+        if (!$style instanceof \MunizEverton\PhpWord\Style\Paragraph) {
             return;
         }
         $xmlWriter = $this->getXmlWriter();
@@ -54,7 +54,7 @@ class Paragraph extends AbstractStyle
         } else {
             $xmlWriter->writeAttribute('fo:margin-top', $marginTop . 'cm');
             $xmlWriter->writeAttribute('fo:margin-bottom', $marginBottom . 'cm');
-            $xmlWriter->writeAttribute('fo:text-align', $style->getAlignment());
+            $xmlWriter->writeAttribute('fo:text-align', $style->getAlign());
         }
         $xmlWriter->endElement(); //style:paragraph-properties
 

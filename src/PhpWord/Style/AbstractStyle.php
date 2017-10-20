@@ -8,16 +8,14 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Style;
-
-use PhpOffice\Common\Text;
+namespace MunizEverton\PhpWord\Style;
 
 /**
  * Abstract style class
@@ -129,7 +127,7 @@ abstract class AbstractStyle
     /**
      * Return style value of child style object, e.g. `left` from `Indentation` child style of `Paragraph`
      *
-     * @param \PhpOffice\PhpWord\Style\AbstractStyle $substyleObject
+     * @param \MunizEverton\PhpWord\Style\AbstractStyle $substyleObject
      * @param string $substyleProperty
      * @return mixed
      * @since 0.12.0
@@ -161,7 +159,7 @@ abstract class AbstractStyle
         if (isset($this->aliases[$key])) {
             $key = $this->aliases[$key];
         }
-        $method = 'set' . Text::removeUnderscorePrefix($key);
+        $method = 'set' . \MunizEverton\PhpWord\Shared\StringFormat::removeUnderscorePrefix($key);
         if (method_exists($this, $method)) {
             $this->$method($value);
         }
@@ -278,9 +276,7 @@ abstract class AbstractStyle
      * @param mixed $value
      * @param array $enum
      * @param mixed $default
-     *
      * @return mixed
-     *
      * @throws \InvalidArgumentException
      */
     protected function setEnumVal($value = null, $enum = array(), $default = null)
@@ -306,7 +302,7 @@ abstract class AbstractStyle
     {
         $styleClass = substr(get_class($this), 0, strrpos(get_class($this), '\\')) . '\\' . $styleName;
         if (is_array($value)) {
-            /** @var \PhpOffice\PhpWord\Style\AbstractStyle $style Type hint */
+            /** @var \MunizEverton\PhpWord\Style\AbstractStyle $style Type hint */
             if (!$style instanceof $styleClass) {
                 $style = new $styleClass();
             }
@@ -329,7 +325,7 @@ abstract class AbstractStyle
     protected function setPairedVal(&$property, &$pairProperty, $value)
     {
         $property = $this->setBoolVal($value, $property);
-        if ($value === true) {
+        if ($value == true) {
             $pairProperty = false;
         }
 
@@ -339,12 +335,9 @@ abstract class AbstractStyle
     /**
      * Set style using associative array
      *
-     * @deprecated 0.11.0
-     *
      * @param array $style
-     *
      * @return self
-     *
+     * @deprecated 0.11.0
      * @codeCoverageIgnore
      */
     public function setArrayStyle(array $style = array())

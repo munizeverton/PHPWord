@@ -3,12 +3,11 @@
 
 [General]
 
-compatibility         = true
-zipClass              = ZipArchive
-pdfRendererName       = DomPDF
-pdfRendererPath       =
-; tempDir               = "C:\PhpWordTemp"
-outputEscapingEnabled = false
+compatibility   = true
+zipClass        = ZipArchive
+pdfRendererName = DomPDF
+pdfRendererPath =
+; tempDir         = "C:\PhpWordTemp"
 
 [Font]
 

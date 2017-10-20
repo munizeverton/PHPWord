@@ -8,19 +8,19 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\Word2007\Element;
+namespace MunizEverton\PhpWord\Writer\Word2007\Element;
 
-use PhpOffice\Common\XMLWriter;
-use PhpOffice\PhpWord\Element\Shape as ShapeElement;
-use PhpOffice\PhpWord\Style\Shape as ShapeStyle;
-use PhpOffice\PhpWord\Writer\Word2007\Style\Shape as ShapeStyleWriter;
+use MunizEverton\PhpWord\Element\Shape as ShapeElement;
+use MunizEverton\PhpWord\Shared\XMLWriter;
+use MunizEverton\PhpWord\Style\Shape as ShapeStyle;
+use MunizEverton\PhpWord\Writer\Word2007\Style\Shape as ShapeStyleWriter;
 
 /**
  * Shape element writer
@@ -55,7 +55,6 @@ class Shape extends AbstractElement
         if (!$this->withoutP) {
             $xmlWriter->startElement('w:p');
         }
-        $this->writeCommentRangeStart();
 
         $xmlWriter->startElement('w:r');
         $xmlWriter->startElement('w:pict');
@@ -79,8 +78,8 @@ class Shape extends AbstractElement
     /**
      * Write arc.
      *
-     * @param \PhpOffice\Common\XMLWriter $xmlWriter
-     * @param \PhpOffice\PhpWord\Style\Shape $style
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Style\Shape $style
      * @return void
      */
     private function writeArc(XMLWriter $xmlWriter, ShapeStyle $style)
@@ -94,8 +93,8 @@ class Shape extends AbstractElement
     /**
      * Write curve.
      *
-     * @param \PhpOffice\Common\XMLWriter $xmlWriter
-     * @param \PhpOffice\PhpWord\Style\Shape $style
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Style\Shape $style
      * @return void
      */
     private function writeCurve(XMLWriter $xmlWriter, ShapeStyle $style)
@@ -110,8 +109,8 @@ class Shape extends AbstractElement
     /**
      * Write line.
      *
-     * @param \PhpOffice\Common\XMLWriter $xmlWriter
-     * @param \PhpOffice\PhpWord\Style\Shape $style
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Style\Shape $style
      * @return void
      */
     private function writeLine(XMLWriter $xmlWriter, ShapeStyle $style)
@@ -125,8 +124,8 @@ class Shape extends AbstractElement
     /**
      * Write polyline.
      *
-     * @param \PhpOffice\Common\XMLWriter $xmlWriter
-     * @param \PhpOffice\PhpWord\Style\Shape $style
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Style\Shape $style
      * @return void
      */
     private function writePolyline(XMLWriter $xmlWriter, ShapeStyle $style)
@@ -137,8 +136,8 @@ class Shape extends AbstractElement
     /**
      * Write rectangle.
      *
-     * @param \PhpOffice\Common\XMLWriter $xmlWriter
-     * @param \PhpOffice\PhpWord\Style\Shape $style
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Style\Shape $style
      * @return void
      */
     private function writeRoundRect(XMLWriter $xmlWriter, ShapeStyle $style)

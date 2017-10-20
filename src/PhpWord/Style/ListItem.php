@@ -8,16 +8,16 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Style;
+namespace MunizEverton\PhpWord\Style;
 
-use PhpOffice\PhpWord\Style;
+use MunizEverton\PhpWord\Style;
 
 /**
  * List item style
@@ -155,7 +155,7 @@ class ListItem extends AbstractStyle
         }
 
         // Property mapping for numbering level information
-        $properties = array('start', 'format', 'text', 'alignment', 'tabPos', 'left', 'hanging', 'font', 'hint');
+        $properties = array('start', 'format', 'text', 'align', 'tabPos', 'left', 'hanging', 'font', 'hint');
 
         // Legacy level information
         $listTypeStyles = array(
@@ -247,12 +247,11 @@ class ListItem extends AbstractStyle
 
         // Populate style and register to global Style register
         $style = $listTypeStyles[$this->listType];
-        $numProperties = count($properties);
         foreach ($style['levels'] as $key => $value) {
             $level = array();
             $levelProperties = explode(', ', $value);
             $level['level'] = $key;
-            for ($i = 0; $i < $numProperties; $i++) {
+            for ($i = 0; $i < count($properties); $i++) {
                 $property = $properties[$i];
                 $level[$property] = $levelProperties[$i];
             }

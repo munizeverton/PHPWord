@@ -8,17 +8,17 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\HTML\Element;
+namespace MunizEverton\PhpWord\Writer\HTML\Element;
 
-use PhpOffice\PhpWord\Element\Image as ImageElement;
-use PhpOffice\PhpWord\Writer\HTML\Style\Image as ImageStyleWriter;
+use MunizEverton\PhpWord\Element\Image as ImageElement;
+use MunizEverton\PhpWord\Writer\HTML\Style\Image as ImageStyleWriter;
 
 /**
  * Image element HTML writer
@@ -37,16 +37,21 @@ class Image extends Text
         if (!$this->element instanceof ImageElement) {
             return '';
         }
-        $content = '';
-        $imageData = $this->element->getImageStringData(true);
-        if ($imageData !== null) {
-            $styleWriter = new ImageStyleWriter($this->element->getStyle());
-            $style = $styleWriter->write();
-            $imageData = 'data:' . $this->element->getImageType() . ';base64,' . $imageData;
+        /** @var \MunizEverton\PhpWord\Writer\HTML $parentWriter Type hint */
+        $parentWriter = $this->parentWriter;
 
-            $content .= $this->writeOpening();
-            $content .= "<img border=\"0\" style=\"{$style}\" src=\"{$imageData}\"/>";
-            $content .= $this->writeClosing();
+        $content = '';
+        if (!$parentWriter->isPdf()) {
+            $imageData = $this->element->getImageStringData(true);
+            if ($imageData !== null) {
+                $styleWriter = new ImageStyleWriter($this->element->getStyle());
+                $style = $styleWriter->write();
+                $imageData = 'data:' . $this->element->getImageType() . ';base64,' . $imageData;
+
+                $content .= $this->writeOpening();
+                $content .= "<img border=\"0\" style=\"{$style}\" src=\"{$imageData}\"/>";
+                $content .= $this->writeClosing();
+            }
         }
 
         return $content;

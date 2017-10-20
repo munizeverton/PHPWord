@@ -8,17 +8,17 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
-*/
+ */
 
-namespace PhpOffice\PhpWord;
+namespace MunizEverton\PhpWord;
 
-use PhpOffice\PhpWord\Element\Section;
-use PhpOffice\PhpWord\Exception\Exception;
+use MunizEverton\PhpWord\Element\Section;
+use MunizEverton\PhpWord\Exception\Exception;
 
 /**
  * PHPWord main class
@@ -27,13 +27,11 @@ use PhpOffice\PhpWord\Exception\Exception;
  * @method Collection\Footnotes getFootnotes()
  * @method Collection\Endnotes getEndnotes()
  * @method Collection\Charts getCharts()
- * @method Collection\Comments getComments()
  * @method int addBookmark(Element\Bookmark $bookmark)
  * @method int addTitle(Element\Title $title)
  * @method int addFootnote(Element\Footnote $footnote)
  * @method int addEndnote(Element\Endnote $endnote)
  * @method int addChart(Element\Chart $chart)
- * @method int addComment(Element\Comment $comment)
  *
  * @method Style\Paragraph addParagraphStyle(string $styleName, array $styles)
  * @method Style\Font addFontStyle(string $styleName, mixed $fontStyle, mixed $paragraphStyle = null)
@@ -47,9 +45,8 @@ class PhpWord
     /**
      * Default font settings
      *
-     * @deprecated 0.11.0 Use Settings constants
-     *
      * @const string|int
+     * @deprecated 0.11.0 Use Settings constants
      */
     const DEFAULT_FONT_NAME = Settings::DEFAULT_FONT_NAME;
     const DEFAULT_FONT_SIZE = Settings::DEFAULT_FONT_SIZE;
@@ -59,7 +56,7 @@ class PhpWord
     /**
      * Collection of sections
      *
-     * @var \PhpOffice\PhpWord\Element\Section[]
+     * @var \MunizEverton\PhpWord\Element\Section[]
      */
     private $sections = array();
 
@@ -86,16 +83,16 @@ class PhpWord
     public function __construct()
     {
         // Collection
-        $collections = array('Bookmarks', 'Titles', 'Footnotes', 'Endnotes', 'Charts', 'Comments');
+        $collections = array('Bookmarks', 'Titles', 'Footnotes', 'Endnotes', 'Charts');
         foreach ($collections as $collection) {
-            $class = 'PhpOffice\\PhpWord\\Collection\\' . $collection;
+            $class = 'MunizEverton\\PhpWord\\Collection\\' . $collection;
             $this->collections[$collection] = new $class();
         }
 
         // Metadata
-        $metadata = array('DocInfo', 'Settings', 'Compatibility');
+        $metadata = array('DocInfo', 'Protection', 'Compatibility');
         foreach ($metadata as $meta) {
-            $class = 'PhpOffice\\PhpWord\\Metadata\\' . $meta;
+            $class = 'MunizEverton\\PhpWord\\Metadata\\' . $meta;
             $this->metadata[$meta] = new $class();
         }
     }
@@ -103,14 +100,11 @@ class PhpWord
     /**
      * Dynamic function call to reduce static dependency
      *
-     * @since 0.12.0
-     *
      * @param mixed $function
      * @param mixed $args
-     *
-     * @return mixed
-     *
      * @throws \BadMethodCallException
+     * @return mixed
+     * @since 0.12.0
      */
     public function __call($function, $args)
     {
@@ -120,7 +114,7 @@ class PhpWord
         $addCollection = array();
         $addStyle = array();
 
-        $collections = array('Bookmark', 'Title', 'Footnote', 'Endnote', 'Chart', 'Comment');
+        $collections = array('Bookmark', 'Title', 'Footnote', 'Endnote', 'Chart');
         foreach ($collections as $collection) {
             $getCollection[] = strtolower("get{$collection}s");
             $addCollection[] = strtolower("add{$collection}");
@@ -142,7 +136,7 @@ class PhpWord
         if (in_array($function, $addCollection)) {
             $key = ucfirst(str_replace('add', '', $function) . 's');
 
-            /** @var \PhpOffice\PhpWord\Collection\AbstractCollection $collectionObject */
+            /** @var \MunizEverton\PhpWord\Collection\AbstractCollection $collectionObject */
             $collectionObject = $this->collections[$key];
 
             return $collectionObject->addItem(isset($args[0]) ? $args[0] : null);
@@ -150,7 +144,7 @@ class PhpWord
 
         // Run add style method
         if (in_array($function, $addStyle)) {
-            return forward_static_call_array(array('PhpOffice\\PhpWord\\Style', $function), $args);
+            return forward_static_call_array(array('MunizEverton\\PhpWord\\Style', $function), $args);
         }
 
         // Exception
@@ -160,7 +154,7 @@ class PhpWord
     /**
      * Get document properties object
      *
-     * @return \PhpOffice\PhpWord\Metadata\DocInfo
+     * @return \MunizEverton\PhpWord\Metadata\DocInfo
      */
     public function getDocInfo()
     {
@@ -170,20 +164,18 @@ class PhpWord
     /**
      * Get protection
      *
-     * @return \PhpOffice\PhpWord\Metadata\Protection
+     * @return \MunizEverton\PhpWord\Metadata\Protection
      * @since 0.12.0
-     * @deprecated Get the Document protection from PhpWord->getSettings()->getDocumentProtection();
-     * @codeCoverageIgnore
      */
     public function getProtection()
     {
-        return $this->getSettings()->getDocumentProtection();
+        return $this->metadata['Protection'];
     }
 
     /**
      * Get compatibility
      *
-     * @return \PhpOffice\PhpWord\Metadata\Compatibility
+     * @return \MunizEverton\PhpWord\Metadata\Compatibility
      * @since 0.12.0
      */
     public function getCompatibility()
@@ -192,20 +184,9 @@ class PhpWord
     }
 
     /**
-     * Get compatibility
-     *
-     * @return \PhpOffice\PhpWord\Metadata\Settings
-     * @since 0.14.0
-     */
-    public function getSettings()
-    {
-        return $this->metadata['Settings'];
-    }
-
-    /**
      * Get all sections
      *
-     * @return \PhpOffice\PhpWord\Element\Section[]
+     * @return \MunizEverton\PhpWord\Element\Section[]
      */
     public function getSections()
     {
@@ -216,7 +197,7 @@ class PhpWord
      * Create new section
      *
      * @param array $style
-     * @return \PhpOffice\PhpWord\Element\Section
+     * @return \MunizEverton\PhpWord\Element\Section
      */
     public function addSection($style = null)
     {
@@ -273,7 +254,7 @@ class PhpWord
      * Set default paragraph style definition to styles.xml
      *
      * @param array $styles Paragraph style definition
-     * @return \PhpOffice\PhpWord\Style\Paragraph
+     * @return \MunizEverton\PhpWord\Style\Paragraph
      */
     public function setDefaultParagraphStyle($styles)
     {
@@ -286,12 +267,8 @@ class PhpWord
      * @deprecated 0.12.0 Use `new TemplateProcessor($documentTemplate)` instead.
      *
      * @param  string $filename Fully qualified filename.
-     *
      * @return TemplateProcessor
-     *
-     * @throws \PhpOffice\PhpWord\Exception\Exception
-     *
-     * @codeCoverageIgnore
+     * @throws \MunizEverton\PhpWord\Exception\Exception
      */
     public function loadTemplate($filename)
     {
@@ -342,12 +319,9 @@ class PhpWord
     /**
      * Create new section
      *
-     * @deprecated 0.10.0
-     *
      * @param array $settings
-     *
-     * @return \PhpOffice\PhpWord\Element\Section
-     *
+     * @return \MunizEverton\PhpWord\Element\Section
+     * @deprecated 0.10.0
      * @codeCoverageIgnore
      */
     public function createSection($settings = null)
@@ -358,10 +332,8 @@ class PhpWord
     /**
      * Get document properties object
      *
+     * @return \MunizEverton\PhpWord\Metadata\DocInfo
      * @deprecated 0.12.0
-     *
-     * @return \PhpOffice\PhpWord\Metadata\DocInfo
-     *
      * @codeCoverageIgnore
      */
     public function getDocumentProperties()
@@ -372,12 +344,9 @@ class PhpWord
     /**
      * Set document properties object
      *
-     * @deprecated 0.12.0
-     *
-     * @param \PhpOffice\PhpWord\Metadata\DocInfo $documentProperties
-     *
+     * @param \MunizEverton\PhpWord\Metadata\DocInfo $documentProperties
      * @return self
-     *
+     * @deprecated 0.12.0
      * @codeCoverageIgnore
      */
     public function setDocumentProperties($documentProperties)

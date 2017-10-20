@@ -8,17 +8,16 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Reader\RTF;
+namespace MunizEverton\PhpWord\Reader\RTF;
 
-use PhpOffice\PhpWord\PhpWord;
-use PhpOffice\PhpWord\SimpleType\Jc;
+use MunizEverton\PhpWord\PhpWord;
 
 /**
  * RTF document reader
@@ -41,21 +40,21 @@ class Document
     /**
      * PhpWord object
      *
-     * @var \PhpOffice\PhpWord\PhpWord
+     * @var \MunizEverton\PhpWord\PhpWord
      */
     private $phpWord;
 
     /**
      * Section object
      *
-     * @var \PhpOffice\PhpWord\Element\Section
+     * @var \MunizEverton\PhpWord\Element\Section
      */
     private $section;
 
     /**
      * Textrun object
      *
-     * @var \PhpOffice\PhpWord\Element\TextRun
+     * @var \MunizEverton\PhpWord\Element\TextRun
      */
     private $textrun;
 
@@ -130,7 +129,7 @@ class Document
      * - Builds control words and control symbols
      * - Pushes every other character into the text queue
      *
-     * @param \PhpOffice\PhpWord\PhpWord $phpWord
+     * @param \MunizEverton\PhpWord\PhpWord $phpWord
      * @return void
      * @todo Use `fread` stream for scalability
      */
@@ -141,7 +140,7 @@ class Document
             125 => 'markClosing',   // }
             92  => 'markBackslash', // \
             10  => 'markNewline',   // LF
-            13  => 'markNewline',   // CR
+            13  => 'markNewline'    // CR
         );
 
         $this->phpWord = $phpWord;
@@ -160,7 +159,7 @@ class Document
                 $markerFunction = $markers[$ascii];
                 $this->$markerFunction();
             } else {
-                if (false === $this->isControl) { // Non control word: Push character
+                if ($this->isControl === false) { // Non control word: Push character
                     $this->pushText($char);
                 } else {
                     if (preg_match("/^[a-zA-Z0-9-]?$/", $char)) { // No delimiter: Buffer control
@@ -170,7 +169,7 @@ class Document
                         if ($this->isFirst) {
                             $this->isFirst = false;
                         } else {
-                            if (' ' == $char) { // Discard space as a control word delimiter
+                            if ($char == ' ') { // Discard space as a control word delimiter
                                 $this->flushControl(true);
                             }
                         }
@@ -256,12 +255,12 @@ class Document
      */
     private function flushControl($isControl = false)
     {
-        if (1 === preg_match("/^([A-Za-z]+)(-?[0-9]*) ?$/", $this->control, $match)) {
+        if (preg_match("/^([A-Za-z]+)(-?[0-9]*) ?$/", $this->control, $match) === 1) {
             list(, $control, $parameter) = $match;
             $this->parseControl($control, $parameter);
         }
 
-        if (true === $isControl) {
+        if ($isControl === true) {
             $this->setControl(false);
         }
     }
@@ -277,7 +276,7 @@ class Document
             if (isset($this->flags['property'])) { // Set property
                 $this->flags['value'] = $this->text;
             } else { // Set text
-                if (true === $this->flags['paragraph']) {
+                if ($this->flags['paragraph'] === true) {
                     $this->flags['paragraph'] = false;
                     $this->flags['text'] = $this->text;
                 }
@@ -312,9 +311,9 @@ class Document
      */
     private function pushText($char)
     {
-        if ('<' == $char) {
+        if ($char == '<') {
             $this->text .= "&lt;";
-        } elseif ('>' == $char) {
+        } elseif ($char == '>') {
             $this->text .= "&gt;";
         } else {
             $this->text .= $char;
@@ -337,7 +336,7 @@ class Document
             'u'         => array(self::STYL,    'font',         'underline',    true),
             'strike'    => array(self::STYL,    'font',         'strikethrough',true),
             'fs'        => array(self::STYL,    'font',         'size',         $parameter),
-            'qc'        => array(self::STYL,    'paragraph',    'alignment',    Jc::CENTER),
+            'qc'        => array(self::STYL,    'paragraph',    'align',        'center'),
             'sa'        => array(self::STYL,    'paragraph',    'spaceAfter',   $parameter),
             'fonttbl'   => array(self::SKIP,    'fonttbl',      null),
             'colortbl'  => array(self::SKIP,    'colortbl',     null),

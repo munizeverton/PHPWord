@@ -8,17 +8,17 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Element;
+namespace MunizEverton\PhpWord\Element;
 
-use PhpOffice\PhpWord\Exception\InvalidObjectException;
-use PhpOffice\PhpWord\Style\Image as ImageStyle;
+use MunizEverton\PhpWord\Exception\InvalidObjectException;
+use MunizEverton\PhpWord\Style\Image as ImageStyle;
 
 /**
  * Object element
@@ -35,7 +35,7 @@ class Object extends AbstractElement
     /**
      * Image Style
      *
-     * @var \PhpOffice\PhpWord\Style\Image
+     * @var \MunizEverton\PhpWord\Style\Image
      */
     private $style;
 
@@ -65,8 +65,7 @@ class Object extends AbstractElement
      *
      * @param string $source
      * @param mixed $style
-     *
-     * @throws \PhpOffice\PhpWord\Exception\InvalidObjectException
+     * @throws \MunizEverton\PhpWord\Exception\InvalidObjectException
      */
     public function __construct($source, $style = null)
     {
@@ -102,7 +101,7 @@ class Object extends AbstractElement
     /**
      * Get object style
      *
-     * @return \PhpOffice\PhpWord\Style\Image
+     * @return \MunizEverton\PhpWord\Style\Image
      */
     public function getStyle()
     {
@@ -143,10 +142,8 @@ class Object extends AbstractElement
     /**
      * Get Object ID
      *
-     * @deprecated 0.10.0
-     *
      * @return int
-     *
+     * @deprecated 0.10.0
      * @codeCoverageIgnore
      */
     public function getObjectId()
@@ -157,10 +154,8 @@ class Object extends AbstractElement
     /**
      * Set Object ID
      *
-     * @deprecated 0.10.0
-     *
      * @param int $objId
-     *
+     * @deprecated 0.10.0
      * @codeCoverageIgnore
      */
     public function setObjectId($objId)

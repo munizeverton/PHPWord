@@ -8,14 +8,14 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Style;
+namespace MunizEverton\PhpWord\Style;
 
 /**
  * Section settings
@@ -35,14 +35,14 @@ class Section extends Border
      *
      * @const int|float
      */
-    const DEFAULT_WIDTH = 11905.511811024; // In twips.
-    const DEFAULT_HEIGHT = 16837.79527559; // In twips.
-    const DEFAULT_MARGIN = 1440;           // In twips.
-    const DEFAULT_GUTTER = 0;              // In twips.
-    const DEFAULT_HEADER_HEIGHT = 720;     // In twips.
-    const DEFAULT_FOOTER_HEIGHT = 720;     // In twips.
+    const DEFAULT_WIDTH = 11870; // In twip
+    const DEFAULT_HEIGHT = 16787; // In twip
+    const DEFAULT_MARGIN = 1440; // In twip
+    const DEFAULT_GUTTER = 0; // In twip
+    const DEFAULT_HEADER_HEIGHT = 720; // In twip
+    const DEFAULT_FOOTER_HEIGHT = 720; // In twip
     const DEFAULT_COLUMN_COUNT = 1;
-    const DEFAULT_COLUMN_SPACING = 720;    // In twips.
+    const DEFAULT_COLUMN_SPACING = 720; // In twip
 
     /**
      * Page Orientation
@@ -55,7 +55,7 @@ class Section extends Border
     /**
      * Paper size
      *
-     * @var \PhpOffice\PhpWord\Style\Paper
+     * @var \MunizEverton\PhpWord\Style\Paper
      */
     private $paper;
 
@@ -161,7 +161,7 @@ class Section extends Border
     /**
      * Line numbering
      *
-     * @var \PhpOffice\PhpWord\Style\LineNumbering
+     * @var \MunizEverton\PhpWord\Style\LineNumbering
      * @link http://www.schemacentral.com/sc/ooxml/e-w_lnNumType-1.html
      */
     private $lineNumbering;
@@ -287,7 +287,7 @@ class Section extends Border
     /**
      * @param int|float|null $value
      *
-     * @return \PhpOffice\PhpWord\Style\Section
+     * @return \MunizEverton\PhpWord\Style\Section
      *
      * @since 0.12.0
      */
@@ -313,7 +313,7 @@ class Section extends Border
     /**
      * @param int|float|null $value
      *
-     * @return \PhpOffice\PhpWord\Style\Section
+     * @return \MunizEverton\PhpWord\Style\Section
      *
      * @since 0.12.0
      */
@@ -578,7 +578,7 @@ class Section extends Border
     /**
      * Get line numbering
      *
-     * @return \PhpOffice\PhpWord\Style\LineNumbering
+     * @return \MunizEverton\PhpWord\Style\LineNumbering
      */
     public function getLineNumbering()
     {

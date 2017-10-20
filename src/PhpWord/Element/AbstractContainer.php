@@ -8,14 +8,14 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Element;
+namespace MunizEverton\PhpWord\Element;
 
 /**
  * Container abstract class
@@ -39,7 +39,7 @@ namespace PhpOffice\PhpWord\Element;
  * @method Image addImage(string $source, mixed $style = null, bool $isWatermark = false)
  * @method Object addObject(string $source, mixed $style = null)
  * @method TextBox addTextBox(mixed $style = null)
- * @method Field addField(string $type = null, array $properties = array(), array $options = array(), mixed $text = null)
+ * @method Field addField(string $type = null, array $properties = array(), array $options = array())
  * @method Line addLine(mixed $lineStyle = null)
  * @method Shape addShape(string $type, mixed $style = null)
  * @method Chart addChart(string $type, array $categories, array $values, array $style = null)
@@ -58,7 +58,7 @@ abstract class AbstractContainer extends AbstractElement
     protected $elements = array();
 
     /**
-     * Container type Section|Header|Footer|Footnote|Endnote|Cell|TextRun|TextBox|ListItemRun|TrackChange
+     * Container type Section|Header|Footer|Footnote|Endnote|Cell|TextRun|TextBox|ListItemRun
      *
      * @var string
      */
@@ -74,7 +74,7 @@ abstract class AbstractContainer extends AbstractElement
      *
      * @param mixed $function
      * @param mixed $args
-     * @return \PhpOffice\PhpWord\Element\AbstractElement
+     * @return \MunizEverton\PhpWord\Element\AbstractElement
      */
     public function __call($function, $args)
     {
@@ -83,7 +83,7 @@ abstract class AbstractContainer extends AbstractElement
             'ListItem', 'ListItemRun', 'Table', 'Image', 'Object',
             'Footnote', 'Endnote', 'CheckBox', 'TextBox', 'Field',
             'Line', 'Shape', 'Title', 'TOC', 'PageBreak',
-            'Chart', 'FormField', 'SDT', 'Comment'
+            'Chart', 'FormField', 'SDT'
         );
         $functions = array();
         foreach ($elements as $element) {
@@ -122,7 +122,7 @@ abstract class AbstractContainer extends AbstractElement
      * Each element has different number of parameters passed
      *
      * @param string $elementName
-     * @return \PhpOffice\PhpWord\Element\AbstractElement
+     * @return \MunizEverton\PhpWord\Element\AbstractElement
      */
     protected function addElement($elementName)
     {
@@ -141,7 +141,7 @@ abstract class AbstractContainer extends AbstractElement
         $elementArgs = $args;
         array_shift($elementArgs); // Shift the $elementName off the beginning of array
 
-        /** @var \PhpOffice\PhpWord\Element\AbstractElement $element Type hint */
+        /** @var \MunizEverton\PhpWord\Element\AbstractElement $element Type hint */
         $element = $reflection->newInstanceArgs($elementArgs);
 
         // Set parent container
@@ -158,8 +158,6 @@ abstract class AbstractContainer extends AbstractElement
      * Get all elements
      *
      * @return array
-     *
-     * @codeCoverageIgnore
      */
     public function getElements()
     {
@@ -180,15 +178,13 @@ abstract class AbstractContainer extends AbstractElement
      * Check if a method is allowed for the current container
      *
      * @param string $method
-     *
      * @return bool
-     *
      * @throws \BadMethodCallException
      */
     private function checkValidity($method)
     {
         $generalContainers = array(
-            'Section', 'Header', 'Footer', 'Footnote', 'Endnote', 'Cell', 'TextRun', 'TextBox', 'ListItemRun', 'TrackChange',
+            'Section', 'Header', 'Footer', 'Footnote', 'Endnote', 'Cell', 'TextRun', 'TextBox', 'ListItemRun',
         );
 
         $validContainers = array(
@@ -203,8 +199,7 @@ abstract class AbstractContainer extends AbstractElement
             'Shape'         => $generalContainers,
             'FormField'     => $generalContainers,
             'SDT'           => $generalContainers,
-            'TrackChange'   => $generalContainers,
-            'TextRun'       => array('Section', 'Header', 'Footer', 'Cell', 'TextBox', 'TrackChange'),
+            'TextRun'       => array('Section', 'Header', 'Footer', 'Cell', 'TextBox'),
             'ListItem'      => array('Section', 'Header', 'Footer', 'Cell', 'TextBox'),
             'ListItemRun'   => array('Section', 'Header', 'Footer', 'Cell', 'TextBox'),
             'Table'         => array('Section', 'Header', 'Footer', 'Cell', 'TextBox'),
@@ -212,7 +207,7 @@ abstract class AbstractContainer extends AbstractElement
             'TextBox'       => array('Section', 'Header', 'Footer', 'Cell'),
             'Footnote'      => array('Section', 'TextRun', 'Cell'),
             'Endnote'       => array('Section', 'TextRun', 'Cell'),
-            'PreserveText'  => array('Section', 'Header', 'Footer', 'Cell'),
+            'PreserveText'  => array('Header', 'Footer', 'Cell'),
             'Title'         => array('Section'),
             'TOC'           => array('Section'),
             'PageBreak'     => array('Section'),
@@ -250,14 +245,25 @@ abstract class AbstractContainer extends AbstractElement
     }
 
     /**
+     * Add memory image element
+     *
+     * @param string $src
+     * @param mixed $style
+     * @return \MunizEverton\PhpWord\Element\Image
+     * @deprecated 0.9.0
+     * @codeCoverageIgnore
+     */
+    public function addMemoryImage($src, $style = null)
+    {
+        return $this->addImage($src, $style);
+    }
+
+    /**
      * Create textrun element
      *
-     * @deprecated 0.10.0
-     *
      * @param mixed $paragraphStyle
-     *
-     * @return \PhpOffice\PhpWord\Element\TextRun
-     *
+     * @return \MunizEverton\PhpWord\Element\TextRun
+     * @deprecated 0.10.0
      * @codeCoverageIgnore
      */
     public function createTextRun($paragraphStyle = null)
@@ -268,12 +274,9 @@ abstract class AbstractContainer extends AbstractElement
     /**
      * Create footnote element
      *
-     * @deprecated 0.10.0
-     *
      * @param mixed $paragraphStyle
-     *
-     * @return \PhpOffice\PhpWord\Element\Footnote
-     *
+     * @return \MunizEverton\PhpWord\Element\Footnote
+     * @deprecated 0.10.0
      * @codeCoverageIgnore
      */
     public function createFootnote($paragraphStyle = null)

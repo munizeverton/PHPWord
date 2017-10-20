@@ -8,16 +8,14 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\ODText\Element;
-
-use PhpOffice\PhpWord\Settings;
+namespace MunizEverton\PhpWord\Writer\ODText\Element;
 
 /**
  * Text element writer
@@ -33,7 +31,7 @@ class Link extends AbstractElement
     {
         $xmlWriter = $this->getXmlWriter();
         $element = $this->getElement();
-        if (!$element instanceof \PhpOffice\PhpWord\Element\Link) {
+        if (!$element instanceof \MunizEverton\PhpWord\Element\Link) {
             return;
         }
 
@@ -44,11 +42,7 @@ class Link extends AbstractElement
         $xmlWriter->startElement('text:a');
         $xmlWriter->writeAttribute('xlink:type', 'simple');
         $xmlWriter->writeAttribute('xlink:href', $element->getSource());
-        if (Settings::isOutputEscapingEnabled()) {
-            $xmlWriter->text($element->getText());
-        } else {
-            $xmlWriter->writeRaw($element->getText());
-        }
+        $xmlWriter->writeRaw($element->getText());
         $xmlWriter->endElement(); // text:a
 
         if (!$this->withoutP) {

@@ -8,19 +8,19 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\RTF\Part;
+namespace MunizEverton\PhpWord\Writer\RTF\Part;
 
-use PhpOffice\PhpWord\Settings;
-use PhpOffice\PhpWord\Shared\Converter;
-use PhpOffice\PhpWord\Style;
-use PhpOffice\PhpWord\Style\Font;
+use MunizEverton\PhpWord\Settings;
+use MunizEverton\PhpWord\Shared\Converter;
+use MunizEverton\PhpWord\Style;
+use MunizEverton\PhpWord\Style\Font;
 
 /**
  * RTF header part writer
@@ -173,7 +173,7 @@ class Header extends AbstractPart
     {
         $content = '';
 
-        $content .= '{\*\generator PHPWord;}'; // Set the generator
+        $content .= '{\*\generator PhpWord;}'; // Set the generator
         $content .= PHP_EOL;
 
         return $content;
@@ -212,7 +212,7 @@ class Header extends AbstractPart
     /**
      * Register border colors.
      *
-     * @param \PhpOffice\PhpWord\Style\Border $style
+     * @param \MunizEverton\PhpWord\Style\Border $style
      * @return void
      */
     private function registerBorderColor($style)
@@ -228,7 +228,7 @@ class Header extends AbstractPart
     /**
      * Register fonts and colors.
      *
-     * @param \PhpOffice\PhpWord\Style\AbstractStyle $style
+     * @param \MunizEverton\PhpWord\Style\AbstractStyle $style
      * @return void
      */
     private function registerFontItems($style)

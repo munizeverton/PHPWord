@@ -8,14 +8,14 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Element;
+namespace MunizEverton\PhpWord\Element;
 
 /**
  * Field element
@@ -40,8 +40,7 @@ class Field extends AbstractElement
         ),
         'NUMPAGES'=>array(
            'properties'=>array(
-               'format' => array('Arabic', 'ArabicDash', 'CardText', 'DollarText', 'Ordinal', 'OrdText',
-                   'alphabetic', 'ALPHABETIC', 'roman', 'ROMAN', 'Caps', 'FirstCap', 'Lower', 'Upper'),
+               'format' => array('Arabic', 'ArabicDash', 'alphabetic', 'ALPHABETIC', 'roman', 'ROMAN'),
                'numformat' => array('0', '0,00', '#.##0', '#.##0,00', '€ #.##0,00(€ #.##0,00)', '0%', '0,00%')
            ),
            'options'=>array('PreserveFormat')
@@ -53,14 +52,6 @@ class Field extends AbstractElement
                     'h:mm am/pm', 'h:mm:ss am/pm', 'HH:mm', 'HH:mm:ss')
             ),
             'options'=>array('PreserveFormat', 'LunarCalendar', 'SakaEraCalendar', 'LastUsedFormat')
-        ),
-        'XE'=>array(
-            'properties' => array(),
-            'options' => array('Bold', 'Italic')
-        ),
-        'INDEX'=>array(
-            'properties' => array(),
-            'options' => array('PreserveFormat')
         )
     );
 
@@ -70,13 +61,6 @@ class Field extends AbstractElement
      * @var string
      */
     protected $type;
-
-    /**
-     * Field text
-     *
-     * @var TextRun | string
-     */
-    protected $text;
 
     /**
      * Field properties
@@ -98,23 +82,19 @@ class Field extends AbstractElement
      * @param string $type
      * @param array $properties
      * @param array $options
-     * @param TextRun | string $text
      */
-    public function __construct($type = null, $properties = array(), $options = array(), $text = null)
+    public function __construct($type = null, $properties = array(), $options = array())
     {
         $this->setType($type);
         $this->setProperties($properties);
         $this->setOptions($options);
-        $this->setText($text);
     }
 
     /**
      * Set Field type
      *
      * @param string $type
-     *
      * @return string
-     *
      * @throws \InvalidArgumentException
      */
     public function setType($type = null)
@@ -123,7 +103,7 @@ class Field extends AbstractElement
             if (isset($this->fieldsArray[$type])) {
                 $this->type = $type;
             } else {
-                throw new \InvalidArgumentException("Invalid type '$type'");
+                throw new \InvalidArgumentException("Invalid type");
             }
         }
         return $this->type;
@@ -143,9 +123,7 @@ class Field extends AbstractElement
      * Set Field properties
      *
      * @param array $properties
-     *
      * @return self
-     *
      * @throws \InvalidArgumentException
      */
     public function setProperties($properties = array())
@@ -153,7 +131,7 @@ class Field extends AbstractElement
         if (is_array($properties)) {
             foreach (array_keys($properties) as $propkey) {
                 if (!(isset($this->fieldsArray[$this->type]['properties'][$propkey]))) {
-                    throw new \InvalidArgumentException("Invalid property '$propkey'");
+                    throw new \InvalidArgumentException("Invalid property");
                 }
             }
             $this->properties = array_merge($this->properties, $properties);
@@ -175,17 +153,15 @@ class Field extends AbstractElement
      * Set Field options
      *
      * @param array $options
-     *
      * @return self
-     *
      * @throws \InvalidArgumentException
      */
     public function setOptions($options = array())
     {
         if (is_array($options)) {
             foreach (array_keys($options) as $optionkey) {
-                if (!(isset($this->fieldsArray[$this->type]['options'][$optionkey])) && substr($optionkey, 0, 1) !== '\\') {
-                    throw new \InvalidArgumentException("Invalid option '$optionkey', possible values are " . implode(', ', $this->fieldsArray[$this->type]['options']));
+                if (!(isset($this->fieldsArray[$this->type]['options'][$optionkey]))) {
+                    throw new \InvalidArgumentException("Invalid option");
                 }
             }
             $this->options = array_merge($this->options, $options);
@@ -201,36 +177,5 @@ class Field extends AbstractElement
     public function getOptions()
     {
         return $this->options;
-    }
-
-    /**
-     * Set Field text
-     *
-     * @param string | TextRun $text
-     *
-     * @return string | TextRun
-     * 
-     * @throws \InvalidArgumentException
-     */
-    public function setText($text)
-    {
-        if (isset($text)) {
-            if (is_string($text) || $text instanceof TextRun) {
-                $this->text = $text;
-            } else {
-                throw new \InvalidArgumentException("Invalid text");
-            }
-        }
-        return $this->text;
-    }
-
-    /**
-     * Get Field text
-     *
-     * @return string | TextRun
-     */
-    public function getText()
-    {
-        return $this->text;
     }
 }

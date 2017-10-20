@@ -8,16 +8,16 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer;
+namespace MunizEverton\PhpWord\Writer;
 
-use PhpOffice\PhpWord\PhpWord;
+use MunizEverton\PhpWord\PhpWord;
 
 /**
  * HTML writer
@@ -50,9 +50,9 @@ class HTML extends AbstractWriter implements WriterInterface
 
         $this->parts = array('Head', 'Body');
         foreach ($this->parts as $partName) {
-            $partClass = 'PhpOffice\\PhpWord\\Writer\\HTML\\Part\\' . $partName;
+            $partClass = 'MunizEverton\\PhpWord\\Writer\\HTML\\Part\\' . $partName;
             if (class_exists($partClass)) {
-                /** @var \PhpOffice\PhpWord\Writer\HTML\Part\AbstractPart $part Type hint */
+                /** @var \MunizEverton\PhpWord\Writer\HTML\Part\AbstractPart $part Type hint */
                 $part = new $partClass();
                 $part->setParentWriter($this);
                 $this->writerParts[strtolower($partName)] = $part;
@@ -64,10 +64,8 @@ class HTML extends AbstractWriter implements WriterInterface
      * Save PhpWord to file.
      *
      * @param string $filename
-     *
      * @return void
-     *
-     * @throws \PhpOffice\PhpWord\Exception\Exception
+     * @throws \MunizEverton\PhpWord\Exception\Exception
      */
     public function save($filename = null)
     {
@@ -129,10 +127,8 @@ class HTML extends AbstractWriter implements WriterInterface
     /**
      * Write document
      *
-     * @deprecated 0.11.0
-     *
      * @return string
-     *
+     * @deprecated 0.11.0
      * @codeCoverageIgnore
      */
     public function writeDocument()

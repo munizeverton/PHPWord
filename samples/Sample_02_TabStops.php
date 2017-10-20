@@ -5,10 +5,9 @@ include_once 'Sample_Header.php';
 echo date('H:i:s'), ' Create new PhpWord object', EOL;
 $phpWord = new \PhpOffice\PhpWord\PhpWord();
 
-// Define styles
-$multipleTabsStyleName = 'multipleTab';
+// Ads styles
 $phpWord->addParagraphStyle(
-    $multipleTabsStyleName,
+    'multipleTab',
     array(
         'tabs' => array(
             new \PhpOffice\PhpWord\Style\Tab('left', 1550),
@@ -17,20 +16,22 @@ $phpWord->addParagraphStyle(
         )
     )
 );
-
-$rightTabStyleName = 'rightTab';
-$phpWord->addParagraphStyle($rightTabStyleName, array('tabs' => array(new \PhpOffice\PhpWord\Style\Tab('right', 9090))));
-
-$leftTabStyleName = 'centerTab';
-$phpWord->addParagraphStyle($leftTabStyleName, array('tabs' => array(new \PhpOffice\PhpWord\Style\Tab('center', 4680))));
+$phpWord->addParagraphStyle(
+    'rightTab',
+    array('tabs' => array(new \PhpOffice\PhpWord\Style\Tab('right', 9090)))
+);
+$phpWord->addParagraphStyle(
+    'centerTab',
+    array('tabs' => array(new \PhpOffice\PhpWord\Style\Tab('center', 4680)))
+);
 
 // New portrait section
 $section = $phpWord->addSection();
 
 // Add listitem elements
-$section->addText("Multiple Tabs:\tOne\tTwo\tThree", null, $multipleTabsStyleName);
-$section->addText("Left Aligned\tRight Aligned", null, $rightTabStyleName);
-$section->addText("\tCenter Aligned", null, $leftTabStyleName);
+$section->addText(htmlspecialchars("Multiple Tabs:\tOne\tTwo\tThree"), null, 'multipleTab');
+$section->addText(htmlspecialchars("Left Aligned\tRight Aligned"), null, 'rightTab');
+$section->addText(htmlspecialchars("\tCenter Aligned"), null, 'centerTab');
 
 // Save file
 echo write($phpWord, basename(__FILE__, '.php'), $writers);

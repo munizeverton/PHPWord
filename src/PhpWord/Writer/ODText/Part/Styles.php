@@ -8,18 +8,18 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\ODText\Part;
+namespace MunizEverton\PhpWord\Writer\ODText\Part;
 
-use PhpOffice\Common\XMLWriter;
-use PhpOffice\PhpWord\Settings;
-use PhpOffice\PhpWord\Style;
+use MunizEverton\PhpWord\Settings;
+use MunizEverton\PhpWord\Shared\XMLWriter;
+use MunizEverton\PhpWord\Style;
 
 /**
  * ODText styles part writer: styles.xml
@@ -63,7 +63,7 @@ class Styles extends AbstractPart
     /**
      * Write default styles.
      *
-     * @param \PhpOffice\Common\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
      * @return void
      */
     private function writeDefault(XMLWriter $xmlWriter)
@@ -81,27 +81,22 @@ class Styles extends AbstractPart
         $xmlWriter->writeAttribute('style:writing-mode', 'page');
         $xmlWriter->endElement(); // style:paragraph-properties
 
-        $language = $this->getParentWriter()->getPhpWord()->getSettings()->getThemeFontLang();
-        $latinLang = $language != null && is_string($language->getLatin()) ? explode('-', $language->getLatin()) : array('fr', 'FR');
-        $asianLang = $language != null && is_string($language->getEastAsia()) ? explode('-', $language->getEastAsia()) : array('zh', 'CN');
-        $complexLang = $language != null && is_string($language->getBidirectional()) ? explode('-', $language->getBidirectional()) : array('hi', 'IN');
-
         // Font
         $xmlWriter->startElement('style:text-properties');
         $xmlWriter->writeAttribute('style:use-window-font-color', 'true');
         $xmlWriter->writeAttribute('style:font-name', Settings::getDefaultFontName());
         $xmlWriter->writeAttribute('fo:font-size', Settings::getDefaultFontSize() . 'pt');
-        $xmlWriter->writeAttribute('fo:language', $latinLang[0]);
-        $xmlWriter->writeAttribute('fo:country', $latinLang[1]);
+        $xmlWriter->writeAttribute('fo:language', 'fr');
+        $xmlWriter->writeAttribute('fo:country', 'FR');
         $xmlWriter->writeAttribute('style:letter-kerning', 'true');
         $xmlWriter->writeAttribute('style:font-name-asian', Settings::getDefaultFontName() . '2');
         $xmlWriter->writeAttribute('style:font-size-asian', Settings::getDefaultFontSize() . 'pt');
-        $xmlWriter->writeAttribute('style:language-asian', $asianLang[0]);
-        $xmlWriter->writeAttribute('style:country-asian', $asianLang[1]);
+        $xmlWriter->writeAttribute('style:language-asian', 'zh');
+        $xmlWriter->writeAttribute('style:country-asian', 'CN');
         $xmlWriter->writeAttribute('style:font-name-complex', Settings::getDefaultFontName() . '2');
         $xmlWriter->writeAttribute('style:font-size-complex', Settings::getDefaultFontSize() . 'pt');
-        $xmlWriter->writeAttribute('style:language-complex', $complexLang[0]);
-        $xmlWriter->writeAttribute('style:country-complex', $complexLang[1]);
+        $xmlWriter->writeAttribute('style:language-complex', 'hi');
+        $xmlWriter->writeAttribute('style:country-complex', 'IN');
         $xmlWriter->writeAttribute('fo:hyphenate', 'false');
         $xmlWriter->writeAttribute('fo:hyphenation-remain-char-count', '2');
         $xmlWriter->writeAttribute('fo:hyphenation-push-char-count', '2');
@@ -113,7 +108,7 @@ class Styles extends AbstractPart
     /**
      * Write named styles.
      *
-     * @param \PhpOffice\Common\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
      * @return void
      */
     private function writeNamed(XMLWriter $xmlWriter)
@@ -124,7 +119,7 @@ class Styles extends AbstractPart
                 if ($style->isAuto() === false) {
                     $styleClass = str_replace('\\Style\\', '\\Writer\\ODText\\Style\\', get_class($style));
                     if (class_exists($styleClass)) {
-                        /** @var $styleWriter \PhpOffice\PhpWord\Writer\ODText\Style\AbstractStyle Type hint */
+                        /** @var $styleWriter \MunizEverton\PhpWord\Writer\ODText\Style\AbstractStyle Type hint */
                         $styleWriter = new $styleClass($xmlWriter, $style);
                         $styleWriter->write();
                     }
@@ -135,7 +130,7 @@ class Styles extends AbstractPart
     /**
      * Write page layout styles.
      *
-     * @param \PhpOffice\Common\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
      * @return void
      */
     private function writePageLayout(XMLWriter $xmlWriter)
@@ -188,7 +183,7 @@ class Styles extends AbstractPart
     /**
      * Write master style.
      *
-     * @param \PhpOffice\Common\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
      * @return void
      */
     private function writeMaster(XMLWriter $xmlWriter)

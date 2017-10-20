@@ -8,16 +8,14 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Style;
-
-use PhpOffice\PhpWord\SimpleType\Jc;
+namespace MunizEverton\PhpWord\Style;
 
 /**
  * Frame defines the size and position of an object
@@ -90,9 +88,11 @@ class Frame extends AbstractStyle
     const WRAP_INFRONT = 'infront';
 
     /**
-     * @var string
+     * Alignment
+     *
+     * @var \MunizEverton\PhpWord\Style\Alignment
      */
-    private $alignment = '';
+    private $alignment;
 
     /**
      * Unit
@@ -178,59 +178,31 @@ class Frame extends AbstractStyle
      */
     public function __construct($style = array())
     {
+        $this->alignment = new Alignment();
         $this->setStyleByArray($style);
     }
 
     /**
-     * @since 0.13.0
+     * Get alignment
      *
      * @return string
-     */
-    public function getAlignment()
-    {
-        return $this->alignment;
-    }
-
-    /**
-     * @since 0.13.0
-     *
-     * @param string $value
-     *
-     * @return self
-     */
-    public function setAlignment($value)
-    {
-        if (Jc::isValid($value)) {
-            $this->alignment = $value;
-        }
-
-        return $this;
-    }
-
-    /**
-     * @deprecated 0.13.0 Use the `getAlignment` method instead.
-     *
-     * @return string
-     *
-     * @codeCoverageIgnore
      */
     public function getAlign()
     {
-        return $this->getAlignment();
+        return $this->alignment->getValue();
     }
 
     /**
-     * @deprecated 0.13.0 Use the `setAlignment` method instead.
+     * Set alignment
      *
      * @param string $value
-     *
      * @return self
-     *
-     * @codeCoverageIgnore
      */
     public function setAlign($value = null)
     {
-        return $this->setAlignment($value);
+        $this->alignment->setValue($value);
+
+        return $this;
     }
 
     /**

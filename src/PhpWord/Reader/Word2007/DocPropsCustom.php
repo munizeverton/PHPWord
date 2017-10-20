@@ -8,18 +8,18 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Reader\Word2007;
+namespace MunizEverton\PhpWord\Reader\Word2007;
 
-use PhpOffice\Common\XMLReader;
-use PhpOffice\PhpWord\Metadata\DocInfo;
-use PhpOffice\PhpWord\PhpWord;
+use MunizEverton\PhpWord\Metadata\DocInfo;
+use MunizEverton\PhpWord\PhpWord;
+use MunizEverton\PhpWord\Shared\XMLReader;
 
 /**
  * Custom properties reader
@@ -31,7 +31,7 @@ class DocPropsCustom extends AbstractPart
     /**
      * Read custom document properties.
      *
-     * @param \PhpOffice\PhpWord\PhpWord $phpWord
+     * @param \MunizEverton\PhpWord\PhpWord $phpWord
      * @return void
      */
     public function read(PhpWord $phpWord)

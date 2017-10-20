@@ -8,14 +8,14 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\HTML\Element;
+namespace MunizEverton\PhpWord\Writer\HTML\Element;
 
 /**
  * Table element HTML writer
@@ -31,7 +31,7 @@ class Table extends AbstractElement
      */
     public function write()
     {
-        if (!$this->element instanceof \PhpOffice\PhpWord\Element\Table) {
+        if (!$this->element instanceof \MunizEverton\PhpWord\Element\Table) {
             return '';
         }
 
@@ -41,7 +41,7 @@ class Table extends AbstractElement
         if ($rowCount > 0) {
             $content .= '<table>' . PHP_EOL;
             foreach ($rows as $row) {
-                /** @var $row \PhpOffice\PhpWord\Element\Row Type hint */
+                /** @var $row \MunizEverton\PhpWord\Element\Row Type hint */
                 $rowStyle = $row->getStyle();
                 // $height = $row->getHeight();
                 $tblHeader = $rowStyle->isTblHeader();

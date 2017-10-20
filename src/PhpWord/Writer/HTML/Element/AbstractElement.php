@@ -8,18 +8,17 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\HTML\Element;
+namespace MunizEverton\PhpWord\Writer\HTML\Element;
 
-use PhpOffice\PhpWord\Element\AbstractElement as Element;
-use PhpOffice\PhpWord\Writer\AbstractWriter;
-use Zend\Escaper\Escaper;
+use MunizEverton\PhpWord\Element\AbstractElement as Element;
+use MunizEverton\PhpWord\Writer\AbstractWriter;
 
 /**
  * Abstract HTML element writer
@@ -31,14 +30,14 @@ abstract class AbstractElement
     /**
      * Parent writer
      *
-     * @var \PhpOffice\PhpWord\Writer\AbstractWriter
+     * @var \MunizEverton\PhpWord\Writer\AbstractWriter
      */
     protected $parentWriter;
 
     /**
      * Element
      *
-     * @var \PhpOffice\PhpWord\Element\AbstractElement
+     * @var \MunizEverton\PhpWord\Element\AbstractElement
      */
     protected $element;
 
@@ -50,11 +49,6 @@ abstract class AbstractElement
     protected $withoutP = false;
 
     /**
-     * @var \Zend\Escaper\Escaper
-     */
-    protected $escaper;
-
-    /**
      * Write element
      */
     abstract public function write();
@@ -62,8 +56,8 @@ abstract class AbstractElement
     /**
      * Create new instance
      *
-     * @param \PhpOffice\PhpWord\Writer\AbstractWriter $parentWriter
-     * @param \PhpOffice\PhpWord\Element\AbstractElement $element
+     * @param \MunizEverton\PhpWord\Writer\AbstractWriter $parentWriter
+     * @param \MunizEverton\PhpWord\Element\AbstractElement $element
      * @param bool $withoutP
      */
     public function __construct(AbstractWriter $parentWriter, Element $element, $withoutP = false)
@@ -71,7 +65,6 @@ abstract class AbstractElement
         $this->parentWriter = $parentWriter;
         $this->element = $element;
         $this->withoutP = $withoutP;
-        $this->escaper = new Escaper();
     }
 
     /**

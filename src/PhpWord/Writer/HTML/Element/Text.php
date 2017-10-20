@@ -8,20 +8,19 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\HTML\Element;
+namespace MunizEverton\PhpWord\Writer\HTML\Element;
 
-use PhpOffice\PhpWord\Settings;
-use PhpOffice\PhpWord\Style\Font;
-use PhpOffice\PhpWord\Style\Paragraph;
-use PhpOffice\PhpWord\Writer\HTML\Style\Font as FontStyleWriter;
-use PhpOffice\PhpWord\Writer\HTML\Style\Paragraph as ParagraphStyleWriter;
+use MunizEverton\PhpWord\Style\Font;
+use MunizEverton\PhpWord\Style\Paragraph;
+use MunizEverton\PhpWord\Writer\HTML\Style\Font as FontStyleWriter;
+use MunizEverton\PhpWord\Writer\HTML\Style\Paragraph as ParagraphStyleWriter;
 
 /**
  * Text element HTML writer
@@ -65,7 +64,7 @@ class Text extends AbstractElement
      */
     public function write()
     {
-        /** @var \PhpOffice\PhpWord\Element\Text $element Type hint */
+        /** @var \MunizEverton\PhpWord\Element\Text $element Type hint */
         $element = $this->element;
         $this->getFontStyle();
 
@@ -73,11 +72,7 @@ class Text extends AbstractElement
         $content .= $this->writeOpening();
         $content .= $this->openingText;
         $content .= $this->openingTags;
-        if (Settings::isOutputEscapingEnabled()) {
-            $content .= $this->escaper->escapeHtml($element->getText());
-        } else {
-            $content .= $element->getText();
-        }
+        $content .= $element->getText();
         $content .= $this->closingTags;
         $content .= $this->closingText;
         $content .= $this->writeClosing();
@@ -135,12 +130,7 @@ class Text extends AbstractElement
     {
         $content = '';
         if (!$this->withoutP) {
-            if (Settings::isOutputEscapingEnabled()) {
-                $content .= $this->escaper->escapeHtml($this->closingText);
-            } else {
-                $content .= $this->closingText;
-            }
-
+            $content .= $this->closingText;
             $content .= "</p>" . PHP_EOL;
         }
 
@@ -154,7 +144,7 @@ class Text extends AbstractElement
      */
     private function getParagraphStyle()
     {
-        /** @var \PhpOffice\PhpWord\Element\Text $element Type hint */
+        /** @var \MunizEverton\PhpWord\Element\Text $element Type hint */
         $element = $this->element;
         $style = '';
         if (!method_exists($element, 'getParagraphStyle')) {
@@ -182,7 +172,7 @@ class Text extends AbstractElement
      */
     private function getFontStyle()
     {
-        /** @var \PhpOffice\PhpWord\Element\Text $element Type hint */
+        /** @var \MunizEverton\PhpWord\Element\Text $element Type hint */
         $element = $this->element;
         $style = '';
         $fontStyle = $element->getFontStyle();

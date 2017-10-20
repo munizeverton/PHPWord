@@ -8,22 +8,22 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\HTML\Part;
+namespace MunizEverton\PhpWord\Writer\HTML\Part;
 
-use PhpOffice\PhpWord\Settings;
-use PhpOffice\PhpWord\Style;
-use PhpOffice\PhpWord\Style\Font;
-use PhpOffice\PhpWord\Style\Paragraph;
-use PhpOffice\PhpWord\Writer\HTML\Style\Font as FontStyleWriter;
-use PhpOffice\PhpWord\Writer\HTML\Style\Generic as GenericStyleWriter;
-use PhpOffice\PhpWord\Writer\HTML\Style\Paragraph as ParagraphStyleWriter;
+use MunizEverton\PhpWord\Settings;
+use MunizEverton\PhpWord\Style;
+use MunizEverton\PhpWord\Style\Font;
+use MunizEverton\PhpWord\Style\Paragraph;
+use MunizEverton\PhpWord\Writer\HTML\Style\Font as FontStyleWriter;
+use MunizEverton\PhpWord\Writer\HTML\Style\Generic as GenericStyleWriter;
+use MunizEverton\PhpWord\Writer\HTML\Style\Paragraph as ParagraphStyleWriter;
 
 /**
  * RTF head part writer
@@ -41,14 +41,14 @@ class Head extends AbstractPart
     {
         $docProps = $this->getParentWriter()->getPhpWord()->getDocInfo();
         $propertiesMapping = array(
-            'creator'     => 'author',
-            'title'       => '',
+            'creator' => 'author',
+            'title' => '',
             'description' => '',
-            'subject'     => '',
-            'keywords'    => '',
-            'category'    => '',
-            'company'     => '',
-            'manager'     => ''
+            'subject' => '',
+            'keywords' => '',
+            'category' => '',
+            'company' => '',
+            'manager' => ''
         );
         $title = $docProps->getTitle();
         $title = ($title != '') ? $title : 'PHPWord';
@@ -62,9 +62,8 @@ class Head extends AbstractPart
             $value = ($value == '') ? $key : $value;
             $method = "get" . $key;
             if ($docProps->$method() != '') {
-                $content .= '<meta name="' . $value . '"'
-                          . ' content="' . (Settings::isOutputEscapingEnabled() ? $this->escaper->escapeHtmlAttr($docProps->$method()) : $docProps->$method()) . '"'
-                          .' />' . PHP_EOL;
+                $content .= '<meta name="' . $value . '" content="' .
+                    $docProps->$method() . '" />' . PHP_EOL;
             }
         }
         $content .= $this->writeStyles();

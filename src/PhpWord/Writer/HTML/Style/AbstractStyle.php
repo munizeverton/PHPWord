@@ -8,16 +8,16 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\HTML\Style;
+namespace MunizEverton\PhpWord\Writer\HTML\Style;
 
-use PhpOffice\PhpWord\Style\AbstractStyle as Style;
+use MunizEverton\PhpWord\Style\AbstractStyle as Style;
 
 /**
  * Style writer
@@ -29,14 +29,14 @@ abstract class AbstractStyle
     /**
      * Parent writer
      *
-     * @var \PhpOffice\PhpWord\Writer\AbstractWriter
+     * @var \MunizEverton\PhpWord\Writer\AbstractWriter
      */
     private $parentWriter;
 
     /**
      * Style
      *
-     * @var array|\PhpOffice\PhpWord\Style\AbstractStyle
+     * @var array|\MunizEverton\PhpWord\Style\AbstractStyle
      */
     private $style;
 
@@ -48,7 +48,7 @@ abstract class AbstractStyle
     /**
      * Create new instance
      *
-     * @param array|\PhpOffice\PhpWord\Style\AbstractStyle $style
+     * @param array|\MunizEverton\PhpWord\Style\AbstractStyle $style
      */
     public function __construct($style = null)
     {
@@ -58,7 +58,7 @@ abstract class AbstractStyle
     /**
      * Set parent writer.
      *
-     * @param \PhpOffice\PhpWord\Writer\AbstractWriter $writer
+     * @param \MunizEverton\PhpWord\Writer\AbstractWriter $writer
      * @return void
      */
     public function setParentWriter($writer)
@@ -69,7 +69,7 @@ abstract class AbstractStyle
     /**
      * Get parent writer
      *
-     * @return \PhpOffice\PhpWord\Writer\AbstractWriter
+     * @return \MunizEverton\PhpWord\Writer\AbstractWriter
      */
     public function getParentWriter()
     {
@@ -79,7 +79,7 @@ abstract class AbstractStyle
     /**
      * Get style
      *
-     * @return array|\PhpOffice\PhpWord\Style\AbstractStyle $style
+     * @return array|\MunizEverton\PhpWord\Style\AbstractStyle $style
      */
     public function getStyle()
     {

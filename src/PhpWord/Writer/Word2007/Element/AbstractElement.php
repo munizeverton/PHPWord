@@ -8,18 +8,18 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\Word2007\Element;
+namespace MunizEverton\PhpWord\Writer\Word2007\Element;
 
-use PhpOffice\Common\Text as CommonText;
-use PhpOffice\Common\XMLWriter;
-use PhpOffice\PhpWord\Element\AbstractElement as Element;
+use MunizEverton\PhpWord\Element\AbstractElement as Element;
+use MunizEverton\PhpWord\Shared\StringFormat;
+use MunizEverton\PhpWord\Shared\XMLWriter;
 
 /**
  * Abstract element writer
@@ -31,14 +31,14 @@ abstract class AbstractElement
     /**
      * XML writer
      *
-     * @var \PhpOffice\Common\XMLWriter
+     * @var \MunizEverton\PhpWord\Shared\XMLWriter
      */
     private $xmlWriter;
 
     /**
      * Element
      *
-     * @var \PhpOffice\PhpWord\Element\AbstractElement
+     * @var \MunizEverton\PhpWord\Element\AbstractElement
      */
     private $element;
 
@@ -57,8 +57,8 @@ abstract class AbstractElement
     /**
      * Create new instance
      *
-     * @param \PhpOffice\Common\XMLWriter $xmlWriter
-     * @param \PhpOffice\PhpWord\Element\AbstractElement $element
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Element\AbstractElement $element
      * @param bool $withoutP
      */
     public function __construct(XMLWriter $xmlWriter, Element $element, $withoutP = false)
@@ -71,7 +71,7 @@ abstract class AbstractElement
     /**
      * Get XML Writer
      *
-     * @return \PhpOffice\Common\XMLWriter
+     * @return \MunizEverton\PhpWord\Shared\XMLWriter
      */
     protected function getXmlWriter()
     {
@@ -81,7 +81,7 @@ abstract class AbstractElement
     /**
      * Get element
      *
-     * @return \PhpOffice\PhpWord\Element\AbstractElement
+     * @return \MunizEverton\PhpWord\Element\AbstractElement
      */
     protected function getElement()
     {
@@ -91,7 +91,7 @@ abstract class AbstractElement
     /**
      * Start w:p DOM element.
      *
-     * @uses \PhpOffice\PhpWord\Writer\Word2007\Element\PageBreak::write()
+     * @uses \MunizEverton\PhpWord\Writer\Word2007\Element\PageBreak::write()
      * @return void
      */
     protected function startElementP()
@@ -103,7 +103,6 @@ abstract class AbstractElement
                 $this->writeParagraphStyle();
             }
         }
-        $this->writeCommentRangeStart();
     }
 
     /**
@@ -113,59 +112,8 @@ abstract class AbstractElement
      */
     protected function endElementP()
     {
-        $this->writeCommentRangeEnd();
         if (!$this->withoutP) {
             $this->xmlWriter->endElement(); // w:p
-        }
-    }
-
-    /**
-     * Writes the w:commentRangeStart DOM element
-     *
-     * @return void
-     */
-    protected function writeCommentRangeStart()
-    {
-        if ($this->element->getCommentRangeStart() != null) {
-            $comment = $this->element->getCommentRangeStart();
-            //only set the ID if it is not yet set, otherwise it will overwrite it
-            if ($comment->getElementId() == null) {
-                $comment->setElementId();
-            }
-
-            $this->xmlWriter->writeElementBlock('w:commentRangeStart', array('w:id' => $comment->getElementId()));
-        }
-    }
-
-    /**
-     * Writes the w:commentRangeEnd DOM element
-     *
-     * @return void
-     */
-    protected function writeCommentRangeEnd()
-    {
-        if ($this->element->getCommentRangeEnd() != null) {
-            $comment = $this->element->getCommentRangeEnd();
-            //only set the ID if it is not yet set, otherwise it will overwrite it
-            if ($comment->getElementId() == null) {
-                $comment->setElementId();
-            }
-
-            $this->xmlWriter->writeElementBlock('w:commentRangeEnd', array('w:id' => $comment->getElementId()));
-            $this->xmlWriter->startElement('w:r');
-            $this->xmlWriter->writeElementBlock('w:commentReference', array('w:id' => $comment->getElementId()));
-            $this->xmlWriter->endElement();
-        } elseif ($this->element->getCommentRangeStart() != null && $this->element->getCommentRangeStart()->getEndElement() == null) {
-            $comment = $this->element->getCommentRangeStart();
-            //only set the ID if it is not yet set, otherwise it will overwrite it
-            if ($comment->getElementId() == null) {
-                $comment->setElementId();
-            }
-
-            $this->xmlWriter->writeElementBlock('w:commentRangeEnd', array('w:id' => $comment->getElementId()));
-            $this->xmlWriter->startElement('w:r');
-            $this->xmlWriter->writeElementBlock('w:commentReference', array('w:id' => $comment->getElementId()));
-            $this->xmlWriter->endElement();
         }
     }
 
@@ -199,7 +147,7 @@ abstract class AbstractElement
     private function writeTextStyle($styleType)
     {
         $method = "get{$styleType}Style";
-        $class = "PhpOffice\\PhpWord\\Writer\\Word2007\\Style\\{$styleType}";
+        $class = "MunizEverton\\PhpWord\\Writer\\Word2007\\Style\\{$styleType}";
         $styleObject = $this->element->$method();
 
         $styleWriter = new $class($this->xmlWriter, $styleObject);
@@ -207,7 +155,7 @@ abstract class AbstractElement
             $styleWriter->setIsInline(true);
         }
 
-        /** @var \PhpOffice\PhpWord\Writer\Word2007\Style\AbstractStyle $styleWriter */
+        /** @var \MunizEverton\PhpWord\Writer\Word2007\Style\AbstractStyle $styleWriter */
         $styleWriter->write();
     }
 
@@ -219,6 +167,6 @@ abstract class AbstractElement
      */
     protected function getText($text)
     {
-        return CommonText::controlCharacterPHP2OOXML($text);
+        return StringFormat::controlCharacterPHP2OOXML($text);
     }
 }

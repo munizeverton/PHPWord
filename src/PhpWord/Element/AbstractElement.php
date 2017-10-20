@@ -8,17 +8,18 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Element;
+namespace MunizEverton\PhpWord\Element;
 
-use PhpOffice\PhpWord\Media;
-use PhpOffice\PhpWord\PhpWord;
+use MunizEverton\PhpWord\Media;
+use MunizEverton\PhpWord\PhpWord;
+use MunizEverton\PhpWord\Style;
 
 /**
  * Element abstract class
@@ -30,7 +31,7 @@ abstract class AbstractElement
     /**
      * PhpWord object
      *
-     * @var \PhpOffice\PhpWord\PhpWord
+     * @var \MunizEverton\PhpWord\PhpWord
      */
     protected $phpWord;
 
@@ -108,30 +109,16 @@ abstract class AbstractElement
     protected $mediaRelation = false;
 
     /**
-     * Is part of collection; true for Title, Footnote, Endnote, Chart, and Comment
+     * Is part of collection; true for Title, Footnote, Endnote, and Chart
      *
      * @var bool
      */
     protected $collectionRelation = false;
 
     /**
-     * The start position for the linked comment
-     *
-     * @var Comment
-     */
-    protected $commentRangeStart;
-
-    /**
-     * The end position for the linked comment
-     *
-     * @var Comment
-     */
-    protected $commentRangeEnd;
-
-    /**
      * Get PhpWord
      *
-     * @return \PhpOffice\PhpWord\PhpWord
+     * @return \MunizEverton\PhpWord\PhpWord
      */
     public function getPhpWord()
     {
@@ -141,7 +128,7 @@ abstract class AbstractElement
     /**
      * Set PhpWord as reference.
      *
-     * @param \PhpOffice\PhpWord\PhpWord $phpWord
+     * @param \MunizEverton\PhpWord\PhpWord $phpWord
      * @return void
      */
     public function setPhpWord(PhpWord $phpWord = null)
@@ -231,7 +218,7 @@ abstract class AbstractElement
     /**
      * Get element unique ID
      *
-     * @return integer
+     * @return string
      */
     public function getElementId()
     {
@@ -280,60 +267,11 @@ abstract class AbstractElement
     }
 
     /**
-     * Get comment start
-     *
-     * @return Comment
-     */
-    public function getCommentRangeStart()
-    {
-        return $this->commentRangeStart;
-    }
-
-    /**
-     * Set comment start
-     *
-     * @param Comment $value
-     */
-    public function setCommentRangeStart(Comment $value)
-    {
-        if ($this instanceof Comment) {
-            throw new \InvalidArgumentException("Cannot set a Comment on a Comment");
-        }
-        $this->commentRangeStart= $value;
-        $this->commentRangeStart->setStartElement($this);
-    }
-
-    /**
-     * Get comment end
-     *
-     * @return Comment
-     */
-    public function getCommentRangeEnd()
-    {
-        return $this->commentRangeEnd;
-    }
-
-    /**
-     * Set comment end
-     *
-     * @param Comment $value
-     * @return void
-     */
-    public function setCommentRangeEnd(Comment $value)
-    {
-        if ($this instanceof Comment) {
-            throw new \InvalidArgumentException("Cannot set a Comment on a Comment");
-        }
-        $this->commentRangeEnd= $value;
-        $this->commentRangeEnd->setEndElement($this);
-    }
-
-    /**
      * Set parent container
      *
      * Passed parameter should be a container, except for Table (contain Row) and Row (contain Cell)
      *
-     * @param \PhpOffice\PhpWord\Element\AbstractElement $container
+     * @param \MunizEverton\PhpWord\Element\AbstractElement $container
      * @return void
      */
     public function setParentContainer(AbstractElement $container)
@@ -440,11 +378,8 @@ abstract class AbstractElement
      * @param mixed $value
      * @param array $enum
      * @param mixed $default
-     *
      * @return mixed
-     *
      * @throws \InvalidArgumentException
-     *
      * @todo Merge with the same method in AbstractStyle
      */
     protected function setEnumVal($value = null, $enum = array(), $default = null)

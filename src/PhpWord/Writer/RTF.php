@@ -8,16 +8,16 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer;
+namespace MunizEverton\PhpWord\Writer;
 
-use PhpOffice\PhpWord\PhpWord;
+use MunizEverton\PhpWord\PhpWord;
 
 /**
  * RTF writer
@@ -36,7 +36,7 @@ class RTF extends AbstractWriter implements WriterInterface
     /**
      * Create new instance
      *
-     * @param \PhpOffice\PhpWord\PhpWord $phpWord
+     * @param \MunizEverton\PhpWord\PhpWord $phpWord
      */
     public function __construct(PhpWord $phpWord = null)
     {
@@ -46,7 +46,7 @@ class RTF extends AbstractWriter implements WriterInterface
         foreach ($this->parts as $partName) {
             $partClass = get_class($this) . '\\Part\\' . $partName;
             if (class_exists($partClass)) {
-                /** @var \PhpOffice\PhpWord\Writer\RTF\Part\AbstractPart $part Type hint */
+                /** @var \MunizEverton\PhpWord\Writer\RTF\Part\AbstractPart $part Type hint */
                 $part = new $partClass();
                 $part->setParentWriter($this);
                 $this->writerParts[strtolower($partName)] = $part;
@@ -58,10 +58,8 @@ class RTF extends AbstractWriter implements WriterInterface
      * Save content to file.
      *
      * @param string $filename
-     *
      * @return void
-     *
-     * @throws \PhpOffice\PhpWord\Exception\Exception
+     * @throws \MunizEverton\PhpWord\Exception\Exception
      */
     public function save($filename = null)
     {

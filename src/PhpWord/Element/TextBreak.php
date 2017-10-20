@@ -8,17 +8,17 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Element;
+namespace MunizEverton\PhpWord\Element;
 
-use PhpOffice\PhpWord\Style\Font;
-use PhpOffice\PhpWord\Style\Paragraph;
+use MunizEverton\PhpWord\Style\Font;
+use MunizEverton\PhpWord\Style\Paragraph;
 
 /**
  * Text break element
@@ -28,14 +28,14 @@ class TextBreak extends AbstractElement
     /**
      * Paragraph style
      *
-     * @var string|\PhpOffice\PhpWord\Style\Paragraph
+     * @var string|\MunizEverton\PhpWord\Style\Paragraph
      */
     private $paragraphStyle = null;
 
     /**
      * Text style
      *
-     * @var string|\PhpOffice\PhpWord\Style\Font
+     * @var string|\MunizEverton\PhpWord\Style\Font
      */
     private $fontStyle = null;
 
@@ -60,7 +60,7 @@ class TextBreak extends AbstractElement
      *
      * @param mixed $style
      * @param mixed $paragraphStyle
-     * @return string|\PhpOffice\PhpWord\Style\Font
+     * @return string|\MunizEverton\PhpWord\Style\Font
      */
     public function setFontStyle($style = null, $paragraphStyle = null)
     {
@@ -80,7 +80,7 @@ class TextBreak extends AbstractElement
     /**
      * Get Text style
      *
-     * @return string|\PhpOffice\PhpWord\Style\Font
+     * @return string|\MunizEverton\PhpWord\Style\Font
      */
     public function getFontStyle()
     {
@@ -90,8 +90,8 @@ class TextBreak extends AbstractElement
     /**
      * Set Paragraph style
      *
-     * @param   string|array|\PhpOffice\PhpWord\Style\Paragraph $style
-     * @return  string|\PhpOffice\PhpWord\Style\Paragraph
+     * @param   string|array|\MunizEverton\PhpWord\Style\Paragraph $style
+     * @return  string|\MunizEverton\PhpWord\Style\Paragraph
      */
     public function setParagraphStyle($style = null)
     {
@@ -109,7 +109,7 @@ class TextBreak extends AbstractElement
     /**
      * Get Paragraph style
      *
-     * @return string|\PhpOffice\PhpWord\Style\Paragraph
+     * @return string|\MunizEverton\PhpWord\Style\Paragraph
      */
     public function getParagraphStyle()
     {

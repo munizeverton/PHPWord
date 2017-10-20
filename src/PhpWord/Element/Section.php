@@ -8,18 +8,21 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Element;
+namespace MunizEverton\PhpWord\Element;
 
-use PhpOffice\PhpWord\ComplexType\FootnoteProperties;
-use PhpOffice\PhpWord\Style\Section as SectionStyle;
+use MunizEverton\PhpWord\Exception\Exception;
+use MunizEverton\PhpWord\Style\Section as SectionStyle;
 
+/**
+ * Section
+ */
 class Section extends AbstractContainer
 {
     /**
@@ -30,7 +33,7 @@ class Section extends AbstractContainer
     /**
      * Section style
      *
-     * @var \PhpOffice\PhpWord\Style\Section
+     * @var \MunizEverton\PhpWord\Style\Section
      */
     private $style;
 
@@ -47,13 +50,6 @@ class Section extends AbstractContainer
      * @var Footer[]
      */
     private $footers = array();
-
-    /**
-     * The properties for the footnote of this section
-     *
-     * @var FootnoteProperties
-     */
-    private $footnoteProperties;
 
     /**
      * Create new instance
@@ -85,9 +81,7 @@ class Section extends AbstractContainer
     /**
      * Get section style
      *
-     * @return \PhpOffice\PhpWord\Style\Section
-     *
-     * @codeCoverageIgnore
+     * @return \MunizEverton\PhpWord\Style\Section
      */
     public function getStyle()
     {
@@ -97,11 +91,9 @@ class Section extends AbstractContainer
     /**
      * Add header
      *
-     * @since 0.10.0
-     *
      * @param string $type
-     *
      * @return Header
+     * @since 0.10.0
      */
     public function addHeader($type = Header::AUTO)
     {
@@ -111,11 +103,9 @@ class Section extends AbstractContainer
     /**
      * Add footer
      *
-     * @since 0.10.0
-     *
      * @param string $type
-     *
      * @return Footer
+     * @since 0.10.0
      */
     public function addFooter($type = Header::AUTO)
     {
@@ -126,8 +116,6 @@ class Section extends AbstractContainer
      * Get header elements
      *
      * @return Header[]
-     *
-     * @codeCoverageIgnore
      */
     public function getHeaders()
     {
@@ -138,32 +126,10 @@ class Section extends AbstractContainer
      * Get footer elements
      *
      * @return Footer[]
-     *
-     * @codeCoverageIgnore
      */
     public function getFooters()
     {
         return $this->footers;
-    }
-
-    /**
-     * Get the footnote properties
-     *
-     * @return \PhpOffice\PhpWord\Element\FooterProperties
-     */
-    public function getFootnotePropoperties()
-    {
-        return $this->footnoteProperties;
-    }
-
-    /**
-     * Set the footnote properties
-     *
-     * @param FootnoteProperties $footnoteProperties
-     */
-    public function setFootnoteProperties(FootnoteProperties $footnoteProperties = null)
-    {
-        $this->footnoteProperties = $footnoteProperties;
     }
 
     /**
@@ -181,25 +147,17 @@ class Section extends AbstractContainer
                 return true;
             }
         }
-        foreach ($this->footers as $footer) {
-            if ($footer->getType() == Header::FIRST) {
-                return true;
-            }
-        }
         return false;
     }
 
     /**
      * Add header/footer
      *
-     * @since 0.10.0
-     *
      * @param string $type
      * @param boolean $header
-     *
      * @return Header|Footer
-     *
-     * @throws \Exception
+     * @throws \MunizEverton\PhpWord\Exception\Exception
+     * @since 0.10.0
      */
     private function addHeaderFooter($type = Header::AUTO, $header = true)
     {
@@ -210,24 +168,23 @@ class Section extends AbstractContainer
 
         if (in_array($type, array(Header::AUTO, Header::FIRST, Header::EVEN))) {
             $index = count($collection);
-            /** @var \PhpOffice\PhpWord\Element\AbstractContainer $container Type hint */
+            /** @var \MunizEverton\PhpWord\Element\AbstractContainer $container Type hint */
             $container = new $containerClass($this->sectionId, ++$index, $type);
             $container->setPhpWord($this->phpWord);
 
             $collection[$index] = $container;
             return $container;
         } else {
-            throw new \Exception('Invalid header/footer type.');
+            throw new Exception('Invalid header/footer type.');
         }
+
     }
 
     /**
      * Set section style
      *
-     * @deprecated 0.12.0
-     *
      * @param array $settings
-     *
+     * @deprecated 0.12.0
      * @codeCoverageIgnore
      */
     public function setSettings($settings = null)
@@ -238,10 +195,8 @@ class Section extends AbstractContainer
     /**
      * Get section style
      *
+     * @return \MunizEverton\PhpWord\Style\Section
      * @deprecated 0.12.0
-     *
-     * @return \PhpOffice\PhpWord\Style\Section
-     *
      * @codeCoverageIgnore
      */
     public function getSettings()
@@ -252,10 +207,8 @@ class Section extends AbstractContainer
     /**
      * Create header
      *
-     * @deprecated 0.10.0
-     *
      * @return Header
-     *
+     * @deprecated 0.10.0
      * @codeCoverageIgnore
      */
     public function createHeader()
@@ -266,10 +219,8 @@ class Section extends AbstractContainer
     /**
      * Create footer
      *
-     * @deprecated 0.10.0
-     *
      * @return Footer
-     *
+     * @deprecated 0.10.0
      * @codeCoverageIgnore
      */
     public function createFooter()
@@ -280,10 +231,8 @@ class Section extends AbstractContainer
     /**
      * Get footer
      *
-     * @deprecated 0.10.0
-     *
      * @return Footer
-     *
+     * @deprecated 0.10.0
      * @codeCoverageIgnore
      */
     public function getFooter()

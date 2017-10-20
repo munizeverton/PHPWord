@@ -8,16 +8,14 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\Word2007\Element;
-
-use PhpOffice\PhpWord\Settings;
+namespace MunizEverton\PhpWord\Writer\Word2007\Element;
 
 /**
  * CheckBox element writer
@@ -35,7 +33,7 @@ class CheckBox extends Text
     {
         $xmlWriter = $this->getXmlWriter();
         $element = $this->getElement();
-        if (!$element instanceof \PhpOffice\PhpWord\Element\CheckBox) {
+        if (!$element instanceof \MunizEverton\PhpWord\Element\CheckBox) {
             return;
         }
 
@@ -65,7 +63,7 @@ class CheckBox extends Text
         $xmlWriter->startElement('w:r');
         $xmlWriter->startElement('w:instrText');
         $xmlWriter->writeAttribute('xml:space', 'preserve');
-        $xmlWriter->text(' FORMCHECKBOX ');
+        $xmlWriter->writeRaw(' FORMCHECKBOX ');
         $xmlWriter->endElement();// w:instrText
         $xmlWriter->endElement(); // w:r
         $xmlWriter->startElement('w:r');
@@ -85,11 +83,7 @@ class CheckBox extends Text
 
         $xmlWriter->startElement('w:t');
         $xmlWriter->writeAttribute('xml:space', 'preserve');
-        if (Settings::isOutputEscapingEnabled()) {
-            $xmlWriter->text($this->getText($element->getText()));
-        } else {
-            $xmlWriter->writeRaw($this->getText($element->getText()));
-        }
+        $xmlWriter->writeRaw($this->getText($element->getText()));
         $xmlWriter->endElement(); // w:t
         $xmlWriter->endElement(); // w:r
 

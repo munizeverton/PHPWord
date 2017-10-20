@@ -8,14 +8,14 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\Word2007\Style;
+namespace MunizEverton\PhpWord\Writer\Word2007\Style;
 
 /**
  * Font style writer
@@ -60,7 +60,7 @@ class Font extends AbstractStyle
     private function writeStyle()
     {
         $style = $this->getStyle();
-        if (!$style instanceof \PhpOffice\PhpWord\Style\Font) {
+        if (!$style instanceof \MunizEverton\PhpWord\Style\Font) {
             return;
         }
         $xmlWriter = $this->getXmlWriter();
@@ -83,16 +83,6 @@ class Font extends AbstractStyle
             $xmlWriter->writeAttribute('w:eastAsia', $font);
             $xmlWriter->writeAttribute('w:cs', $font);
             $xmlWriter->writeAttributeIf($hint !== null, 'w:hint', $hint);
-            $xmlWriter->endElement();
-        }
-
-        //Language
-        $language = $style->getLang();
-        if ($language != null && ($language->getLatin() !== null || $language->getEastAsia() !== null || $language->getBidirectional() !== null)) {
-            $xmlWriter->startElement('w:lang');
-            $xmlWriter->writeAttributeIf($language->getLatin() !== null, 'w:val', $language->getLatin());
-            $xmlWriter->writeAttributeIf($language->getEastAsia() !== null, 'w:eastAsia', $language->getEastAsia());
-            $xmlWriter->writeAttributeIf($language->getBidirectional() !== null, 'w:bidi', $language->getBidirectional());
             $xmlWriter->endElement();
         }
 

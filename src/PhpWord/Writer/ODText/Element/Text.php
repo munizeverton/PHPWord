@@ -8,17 +8,16 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\ODText\Element;
+namespace MunizEverton\PhpWord\Writer\ODText\Element;
 
-use PhpOffice\PhpWord\Exception\Exception;
-use PhpOffice\PhpWord\Settings;
+use MunizEverton\PhpWord\Exception\Exception;
 
 /**
  * Text element writer
@@ -34,7 +33,7 @@ class Text extends AbstractElement
     {
         $xmlWriter = $this->getXmlWriter();
         $element = $this->getElement();
-        if (!$element instanceof \PhpOffice\PhpWord\Element\Text) {
+        if (!$element instanceof \MunizEverton\PhpWord\Element\Text) {
             return;
         }
         $fontStyle = $element->getFontStyle();
@@ -57,11 +56,7 @@ class Text extends AbstractElement
                 } elseif (is_string($paragraphStyle)) {
                     $xmlWriter->writeAttribute('text:style-name', $paragraphStyle);
                 }
-                if (Settings::isOutputEscapingEnabled()) {
-                    $xmlWriter->text($element->getText());
-                } else {
-                    $xmlWriter->writeRaw($element->getText());
-                }
+                $xmlWriter->writeRaw($element->getText());
             } else {
                 if (empty($paragraphStyle)) {
                     $xmlWriter->writeAttribute('text:style-name', 'Standard');
@@ -73,11 +68,7 @@ class Text extends AbstractElement
                 if (is_string($fontStyle)) {
                     $xmlWriter->writeAttribute('text:style-name', $fontStyle);
                 }
-                if (Settings::isOutputEscapingEnabled()) {
-                    $xmlWriter->text($element->getText());
-                } else {
-                    $xmlWriter->writeRaw($element->getText());
-                }
+                $xmlWriter->writeRaw($element->getText());
                 $xmlWriter->endElement();
             }
             if (!$this->withoutP) {

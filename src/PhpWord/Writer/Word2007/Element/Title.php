@@ -8,16 +8,14 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\Word2007\Element;
-
-use PhpOffice\PhpWord\Settings;
+namespace MunizEverton\PhpWord\Writer\Word2007\Element;
 
 /**
  * TextRun element writer
@@ -35,7 +33,7 @@ class Title extends AbstractElement
     {
         $xmlWriter = $this->getXmlWriter();
         $element = $this->getElement();
-        if (!$element instanceof \PhpOffice\PhpWord\Element\Title) {
+        if (!$element instanceof \MunizEverton\PhpWord\Element\Title) {
             return;
         }
 
@@ -62,13 +60,9 @@ class Title extends AbstractElement
 
         // Actual text
         $xmlWriter->startElement('w:r');
-        if (Settings::isOutputEscapingEnabled()) {
-            $xmlWriter->writeElement('w:t', $this->getText($element->getText()));
-        } else {
-            $xmlWriter->startElement('w:t');
-            $xmlWriter->writeRaw($this->getText($element->getText()));
-            $xmlWriter->endElement();
-        }
+        $xmlWriter->startElement('w:t');
+        $xmlWriter->writeRaw($this->getText($element->getText()));
+        $xmlWriter->endElement();
         $xmlWriter->endElement();
 
         // Bookmark end

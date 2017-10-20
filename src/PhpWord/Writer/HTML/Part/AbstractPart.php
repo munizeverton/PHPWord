@@ -8,47 +8,43 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\HTML\Part;
+namespace MunizEverton\PhpWord\Writer\HTML\Part;
 
-use PhpOffice\PhpWord\Exception\Exception;
-use PhpOffice\PhpWord\Writer\AbstractWriter;
-use Zend\Escaper\Escaper;
+use MunizEverton\PhpWord\Exception\Exception;
+use MunizEverton\PhpWord\Writer\AbstractWriter;
 
 /**
+ * Abstract HTML part writer
+ *
  * @since 0.11.0
  */
 abstract class AbstractPart
 {
     /**
-     * @var \PhpOffice\PhpWord\Writer\AbstractWriter
+     * Parent writer
+     *
+     * @var \MunizEverton\PhpWord\Writer\AbstractWriter
      */
     private $parentWriter;
 
     /**
-     * @var \Zend\Escaper\Escaper
-     */
-    protected $escaper;
-    
-    public function __construct()
-    {
-        $this->escaper = new Escaper();
-    }
-    
-    /**
+     * Write part
+     *
      * @return string
      */
     abstract public function write();
 
     /**
-     * @param \PhpOffice\PhpWord\Writer\AbstractWriter $writer
+     * Set parent writer.
      *
+     * @param \MunizEverton\PhpWord\Writer\AbstractWriter $writer
      * @return void
      */
     public function setParentWriter(AbstractWriter $writer = null)
@@ -57,9 +53,10 @@ abstract class AbstractPart
     }
 
     /**
-     * @return \PhpOffice\PhpWord\Writer\AbstractWriter
+     * Get parent writer
      *
-     * @throws \PhpOffice\PhpWord\Exception\Exception
+     * @return \MunizEverton\PhpWord\Writer\AbstractWriter
+     * @throws \MunizEverton\PhpWord\Exception\Exception
      */
     public function getParentWriter()
     {

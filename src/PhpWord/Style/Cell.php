@@ -8,14 +8,14 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Style;
+namespace MunizEverton\PhpWord\Style;
 
 /**
  * Table cell style
@@ -89,7 +89,7 @@ class Cell extends Border
     /**
      * Shading
      *
-     * @var \PhpOffice\PhpWord\Style\Shading
+     * @var \MunizEverton\PhpWord\Style\Shading
      */
     private $shading;
 
@@ -216,7 +216,7 @@ class Cell extends Border
     /**
      * Get shading
      *
-     * @return \PhpOffice\PhpWord\Style\Shading
+     * @return \MunizEverton\PhpWord\Style\Shading
      */
     public function getShading()
     {
@@ -240,7 +240,6 @@ class Cell extends Border
      * Get default border color
      *
      * @deprecated 0.10.0
-     *
      * @codeCoverageIgnore
      */
     public function getDefaultBorderColor()

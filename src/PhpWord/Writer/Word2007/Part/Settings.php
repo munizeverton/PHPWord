@@ -8,18 +8,14 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\Word2007\Part;
-
-use PhpOffice\PhpWord\ComplexType\ProofState;
-use PhpOffice\PhpWord\ComplexType\TrackChangesView;
-use PhpOffice\PhpWord\Style\Language;
+namespace MunizEverton\PhpWord\Writer\Word2007\Part;
 
 /**
  * Word2007 settings part writer: word/settings.xml
@@ -68,7 +64,7 @@ class Settings extends AbstractPart
     /**
      * Write indivual setting, recursive to any child settings.
      *
-     * @param \PhpOffice\Common\XMLWriter $xmlWriter
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter
      * @param string $settingKey
      * @param array|string $settingValue
      * @return void
@@ -101,18 +97,16 @@ class Settings extends AbstractPart
      */
     private function getSettings()
     {
-
-        /** @var \PhpOffice\PhpWord\Metadata\Settings $documentSettings */
-        $documentSettings = $this->getParentWriter()->getPhpWord()->getSettings();
-
         // Default settings
         $this->settings = array(
+            'w:zoom' => array('@attributes' => array('w:percent' => '100')),
             'w:defaultTabStop' => array('@attributes' => array('w:val' => '708')),
             'w:hyphenationZone' => array('@attributes' => array('w:val' => '425')),
             'w:characterSpacingControl' => array('@attributes' => array('w:val' => 'doNotCompress')),
-            'w:decimalSymbol' => array('@attributes' => array('w:val' => $documentSettings->getDecimalSymbol())),
+            'w:themeFontLang' => array('@attributes' => array('w:val' => 'en-US')),
+            'w:decimalSymbol' => array('@attributes' => array('w:val' => '.')),
             'w:listSeparator' => array('@attributes' => array('w:val' => ';')),
-            'w:compat' => array(),
+            'w:compat' => '',
             'm:mathPr' => array(
                 'm:mathFont' => array('@attributes' => array('m:val' => 'Cambria Math')),
                 'm:brkBin' => array('@attributes' => array('m:val' => 'before')),
@@ -144,118 +138,26 @@ class Settings extends AbstractPart
             ),
         );
 
-        $this->setOnOffValue('w:hideSpellingErrors', $documentSettings->hasHideSpellingErrors());
-        $this->setOnOffValue('w:hideGrammaticalErrors', $documentSettings->hasHideGrammaticalErrors());
-        $this->setOnOffValue('w:trackRevisions', $documentSettings->hasTrackRevisions());
-        $this->setOnOffValue('w:doNotTrackMoves', $documentSettings->hasDoNotTrackMoves());
-        $this->setOnOffValue('w:doNotTrackFormatting', $documentSettings->hasDoNotTrackFormatting());
-        $this->setOnOffValue('w:evenAndOddHeaders', $documentSettings->hasEvenAndOddHeaders());
-
-        $this->setThemeFontLang($documentSettings->getThemeFontLang());
-        $this->setRevisionView($documentSettings->getRevisionView());
-        $this->setDocumentProtection($documentSettings->getDocumentProtection());
-        $this->setProofState($documentSettings->getProofState());
-        $this->setZoom($documentSettings->getZoom());
+        // Other settings
+        $this->getProtection();
         $this->getCompatibility();
-    }
-
-    /**
-     * Adds a boolean attribute to the settings array
-     *
-     * @param string $settingName
-     * @param boolean $booleanValue
-     */
-    private function setOnOffValue($settingName, $booleanValue)
-    {
-        if ($booleanValue !== null && is_bool($booleanValue)) {
-            if ($booleanValue) {
-                $this->settings[$settingName] = array('@attributes' => array());
-            } else {
-                $this->settings[$settingName] = array('@attributes' => array('w:val' => 'false'));
-            }
-        }
     }
 
     /**
      * Get protection settings.
      *
-     * @param \PhpOffice\PhpWord\Metadata\Protection $documentProtection
      * @return void
      */
-    private function setDocumentProtection($documentProtection)
+    private function getProtection()
     {
-        if ($documentProtection != null && $documentProtection->getEditing() !== null) {
+        $protection = $this->getParentWriter()->getPhpWord()->getProtection();
+        if ($protection->getEditing() !== null) {
             $this->settings['w:documentProtection'] = array(
                 '@attributes' => array(
                     'w:enforcement' => 1,
-                    'w:edit' => $documentProtection->getEditing(),
+                    'w:edit' => $protection->getEditing(),
                 )
             );
-        }
-    }
-
-    /**
-     * Set the Proof state
-     *
-     * @param ProofState $proofState
-     */
-    private function setProofState(ProofState $proofState = null)
-    {
-        if ($proofState != null && $proofState->getGrammar() !== null && $proofState->getSpelling() !== null) {
-            $this->settings['w:proofState'] = array(
-                '@attributes' => array(
-                    'w:spelling' => $proofState->getSpelling(),
-                    'w:grammar' => $proofState->getGrammar()
-                )
-            );
-        }
-    }
-
-    /**
-     * Set the Revision View
-     *
-     * @param TrackChangesView $trackChangesView
-     */
-    private function setRevisionView(TrackChangesView $trackChangesView = null)
-    {
-        if ($trackChangesView != null) {
-            $revisionView['w:markup'] = $trackChangesView->hasMarkup() ? 'true': 'false';
-            $revisionView['w:comments'] = $trackChangesView->hasComments() ? 'true': 'false';
-            $revisionView['w:insDel'] = $trackChangesView->hasInsDel() ? 'true': 'false';
-            $revisionView['w:formatting'] = $trackChangesView->hasFormatting() ? 'true': 'false';
-            $revisionView['w:inkAnnotations'] = $trackChangesView->hasInkAnnotations() ? 'true': 'false';
-
-            $this->settings['w:revisionView'] = array('@attributes' => $revisionView);
-        }
-    }
-
-    /**
-     * Sets the language
-     * 
-     * @param Language $language
-     */
-    private function setThemeFontLang(Language $language = null)
-    {
-        $latinLanguage = ($language == null || $language->getLatin() === null) ? 'en-US' : $language->getLatin();
-        $lang = array();
-        $lang['w:val'] = $latinLanguage;
-        if ($language != null) {
-            $lang['w:eastAsia'] = $language->getEastAsia() === null ? 'x-none' : $language->getEastAsia();
-            $lang['w:bidi'] = $language->getBidirectional() === null ? 'x-none' : $language->getBidirectional();
-        }
-        $this->settings['w:themeFontLang'] = array('@attributes' => $lang);
-    }
-
-    /**
-     * Set the magnification
-     *
-     * @param mixed $zoom
-     */
-    private function setZoom($zoom = null)
-    {
-        if ($zoom !== null) {
-            $attr = is_int($zoom) ? 'w:percent' : 'w:val';
-            $this->settings['w:zoom'] = array('@attributes' => array($attr => $zoom));
         }
     }
 

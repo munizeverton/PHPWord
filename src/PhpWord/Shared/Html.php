@@ -8,16 +8,16 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Shared;
+namespace MunizEverton\PhpWord\Shared;
 
-use PhpOffice\PhpWord\Element\AbstractContainer;
+use MunizEverton\PhpWord\Element\AbstractContainer;
 
 /**
  * Common Html functions
@@ -31,7 +31,7 @@ class Html
      *
      * Note: $stylesheet parameter is removed to avoid PHPMD error for unused parameter
      *
-     * @param \PhpOffice\PhpWord\Element\AbstractContainer $element Where the parts need to be added
+     * @param \MunizEverton\PhpWord\Element\AbstractContainer $element Where the parts need to be added
      * @param string $html The code to parse
      * @param bool $fullHTML If it's a full HTML, no need to add 'body' tag
      * @return void
@@ -51,7 +51,7 @@ class Html
         $html = str_replace('&', '&amp;', $html);
         $html = str_replace(array('_lt_', '_gt_', '_amp_'), array('&lt;', '&gt;', '&amp;'), $html);
 
-        if (false === $fullHTML) {
+        if ($fullHTML === false) {
             $html = '<body>' . $html . '</body>';
         }
 
@@ -73,7 +73,7 @@ class Html
      */
     protected static function parseInlineStyle($node, $styles = array())
     {
-        if (XML_ELEMENT_NODE == $node->nodeType) {
+        if ($node->nodeType == XML_ELEMENT_NODE) {
             $attributes = $node->attributes; // get all the attributes(eg: id, class)
 
             foreach ($attributes as $attribute) {
@@ -92,7 +92,7 @@ class Html
      * Parse a node and add a corresponding element to the parent element.
      *
      * @param \DOMNode $node node to parse
-     * @param \PhpOffice\PhpWord\Element\AbstractContainer $element object to add an element corresponding with the node
+     * @param \MunizEverton\PhpWord\Element\AbstractContainer $element object to add an element corresponding with the node
      * @param array $styles Array with all styles
      * @param array $data Array to transport data to a next level in the DOM tree, for example level of listitems
      * @return void
@@ -145,7 +145,7 @@ class Html
                 }
             }
             $method = "parse{$method}";
-            $newElement = call_user_func_array(array('PhpOffice\PhpWord\Shared\Html', $method), $arguments);
+            $newElement = call_user_func_array(array('MunizEverton\PhpWord\Shared\Html', $method), $arguments);
 
             // Retrieve back variables from arguments
             foreach ($keys as $key) {
@@ -166,14 +166,14 @@ class Html
      * Parse child nodes.
      *
      * @param \DOMNode $node
-     * @param \PhpOffice\PhpWord\Element\AbstractContainer $element
+     * @param \MunizEverton\PhpWord\Element\AbstractContainer $element
      * @param array $styles
      * @param array $data
      * @return void
      */
     private static function parseChildNodes($node, $element, $styles, $data)
     {
-        if ('li' != $node->nodeName) {
+        if ($node->nodeName != 'li') {
             $cNodes = $node->childNodes;
             if (count($cNodes) > 0) {
                 foreach ($cNodes as $cNode) {
@@ -189,9 +189,9 @@ class Html
      * Parse paragraph node
      *
      * @param \DOMNode $node
-     * @param \PhpOffice\PhpWord\Element\AbstractContainer $element
+     * @param \MunizEverton\PhpWord\Element\AbstractContainer $element
      * @param array &$styles
-     * @return \PhpOffice\PhpWord\Element\TextRun
+     * @return \MunizEverton\PhpWord\Element\TextRun
      */
     private static function parseParagraph($node, $element, &$styles)
     {
@@ -204,10 +204,10 @@ class Html
     /**
      * Parse heading node
      *
-     * @param \PhpOffice\PhpWord\Element\AbstractContainer $element
+     * @param \MunizEverton\PhpWord\Element\AbstractContainer $element
      * @param array &$styles
      * @param string $argument1 Name of heading style
-     * @return \PhpOffice\PhpWord\Element\TextRun
+     * @return \MunizEverton\PhpWord\Element\TextRun
      *
      * @todo Think of a clever way of defining header styles, now it is only based on the assumption, that
      * Heading1 - Heading6 are already defined somewhere
@@ -224,7 +224,7 @@ class Html
      * Parse text node
      *
      * @param \DOMNode $node
-     * @param \PhpOffice\PhpWord\Element\AbstractContainer $element
+     * @param \MunizEverton\PhpWord\Element\AbstractContainer $element
      * @param array &$styles
      * @return null
      */
@@ -260,10 +260,10 @@ class Html
      * Parse table node
      *
      * @param \DOMNode $node
-     * @param \PhpOffice\PhpWord\Element\AbstractContainer $element
+     * @param \MunizEverton\PhpWord\Element\AbstractContainer $element
      * @param array &$styles
      * @param string $argument1 Method name
-     * @return \PhpOffice\PhpWord\Element\AbstractContainer $element
+     * @return \MunizEverton\PhpWord\Element\AbstractContainer $element
      *
      * @todo As soon as TableItem, RowItem and CellItem support relative width and height
      */
@@ -312,7 +312,7 @@ class Html
      * Parse list item node
      *
      * @param \DOMNode $node
-     * @param \PhpOffice\PhpWord\Element\AbstractContainer $element
+     * @param \MunizEverton\PhpWord\Element\AbstractContainer $element
      * @param array &$styles
      * @param array $data
      * @return null
@@ -361,7 +361,7 @@ class Html
                     }
                     break;
                 case 'text-align':
-                    $styles['alignment'] = $cValue; // todo: any mapping?
+                    $styles['align'] = $cValue;
                     break;
                 case 'color':
                     $styles['color'] = trim($cValue, "#");

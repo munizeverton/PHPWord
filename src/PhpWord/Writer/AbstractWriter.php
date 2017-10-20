@@ -8,20 +8,20 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer;
+namespace MunizEverton\PhpWord\Writer;
 
-use PhpOffice\PhpWord\Exception\CopyFileException;
-use PhpOffice\PhpWord\Exception\Exception;
-use PhpOffice\PhpWord\PhpWord;
-use PhpOffice\PhpWord\Settings;
-use PhpOffice\PhpWord\Shared\ZipArchive;
+use MunizEverton\PhpWord\Exception\CopyFileException;
+use MunizEverton\PhpWord\Exception\Exception;
+use MunizEverton\PhpWord\PhpWord;
+use MunizEverton\PhpWord\Settings;
+use MunizEverton\PhpWord\Shared\ZipArchive;
 
 /**
  * Abstract writer class
@@ -33,7 +33,7 @@ abstract class AbstractWriter implements WriterInterface
     /**
      * PHPWord object
      *
-     * @var \PhpOffice\PhpWord\PhpWord
+     * @var \MunizEverton\PhpWord\PhpWord
      */
     protected $phpWord = null;
 
@@ -96,9 +96,8 @@ abstract class AbstractWriter implements WriterInterface
     /**
      * Get PhpWord object
      *
-     * @return \PhpOffice\PhpWord\PhpWord
-     *
-     * @throws \PhpOffice\PhpWord\Exception\Exception
+     * @return \MunizEverton\PhpWord\PhpWord
+     * @throws \MunizEverton\PhpWord\Exception\Exception
      */
     public function getPhpWord()
     {
@@ -112,7 +111,7 @@ abstract class AbstractWriter implements WriterInterface
     /**
      * Set PhpWord object
      *
-     * @param \PhpOffice\PhpWord\PhpWord
+     * @param \MunizEverton\PhpWord\PhpWord
      * @return self
      */
     public function setPhpWord(PhpWord $phpWord = null)
@@ -151,10 +150,8 @@ abstract class AbstractWriter implements WriterInterface
      *
      * @param bool $value
      * @param string $directory
-     *
      * @return self
-     *
-     * @throws \PhpOffice\PhpWord\Exception\Exception
+     * @throws \MunizEverton\PhpWord\Exception\Exception
      */
     public function setUseDiskCaching($value = false, $directory = null)
     {
@@ -237,8 +234,7 @@ abstract class AbstractWriter implements WriterInterface
      * Cleanup temporary file.
      *
      * @return void
-     *
-     * @throws \PhpOffice\PhpWord\Exception\CopyFileException
+     * @throws \MunizEverton\PhpWord\Exception\CopyFileException
      */
     protected function cleanupTempFile()
     {
@@ -271,9 +267,7 @@ abstract class AbstractWriter implements WriterInterface
      * Get ZipArchive object
      *
      * @param string $filename
-     *
-     * @return \PhpOffice\PhpWord\Shared\ZipArchive
-     *
+     * @return \MunizEverton\PhpWord\Shared\ZipArchive
      * @throws \Exception
      */
     protected function getZipArchive($filename)
@@ -301,13 +295,10 @@ abstract class AbstractWriter implements WriterInterface
     /**
      * Open file for writing
      *
-     * @since 0.11.0
-     *
      * @param string $filename
-     *
      * @return resource
-     *
      * @throws \Exception
+     * @since 0.11.0
      */
     protected function openFile($filename)
     {
@@ -342,7 +333,7 @@ abstract class AbstractWriter implements WriterInterface
     /**
      * Add files to package.
      *
-     * @param \PhpOffice\PhpWord\Shared\ZipArchive $zip
+     * @param \MunizEverton\PhpWord\Shared\ZipArchive $zip
      * @param mixed $elements
      * @return void
      */
@@ -377,7 +368,7 @@ abstract class AbstractWriter implements WriterInterface
      *
      * Get the actual source from an archive image.
      *
-     * @param \PhpOffice\PhpWord\Shared\ZipArchive $zipPackage
+     * @param \MunizEverton\PhpWord\Shared\ZipArchive $zipPackage
      * @param string $source
      * @param string $target
      * @return void
@@ -432,7 +423,6 @@ abstract class AbstractWriter implements WriterInterface
      * Get use disk caching status
      *
      * @deprecated 0.10.0
-     *
      * @codeCoverageIgnore
      */
     public function getUseDiskCaching()

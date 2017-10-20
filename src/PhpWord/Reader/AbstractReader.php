@@ -8,22 +8,21 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Reader;
+namespace MunizEverton\PhpWord\Reader;
 
-use PhpOffice\PhpWord\Exception\Exception;
+use MunizEverton\PhpWord\Exception\Exception;
 
 /**
  * Reader abstract class
  *
  * @since 0.8.0
- *
  * @codeCoverageIgnore Abstract class
  */
 abstract class AbstractReader implements ReaderInterface
@@ -69,10 +68,8 @@ abstract class AbstractReader implements ReaderInterface
      * Open file for reading
      *
      * @param string $filename
-     *
      * @return resource
-     *
-     * @throws \PhpOffice\PhpWord\Exception\Exception
+     * @throws \MunizEverton\PhpWord\Exception\Exception
      */
     protected function openFile($filename)
     {
@@ -113,7 +110,6 @@ abstract class AbstractReader implements ReaderInterface
      * Read data only?
      *
      * @deprecated 0.10.0
-     *
      * @codeCoverageIgnore
      */
     public function getReadDataOnly()

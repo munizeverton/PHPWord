@@ -6,7 +6,8 @@ Recipes
 Create float left image
 -----------------------
 
-Use absolute positioning relative to margin horizontally and to line vertically.
+Use absolute positioning relative to margin horizontally and to line
+vertically.
 
 .. code-block:: php
 

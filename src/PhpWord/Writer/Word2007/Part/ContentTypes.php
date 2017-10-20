@@ -8,16 +8,16 @@
  *
  * For the full copyright and license information, please read the LICENSE
  * file that was distributed with this source code. For the full list of
- * contributors, visit https://github.com/PHPOffice/PHPWord/contributors.
+ * contributors, visit https://github.com/MunizEverton/PHPWord/contributors.
  *
- * @link        https://github.com/PHPOffice/PHPWord
- * @copyright   2010-2016 PHPWord contributors
+ * @link        https://github.com/MunizEverton/PHPWord
+ * @copyright   2010-2014 PHPWord contributors
  * @license     http://www.gnu.org/licenses/lgpl.txt LGPL version 3
  */
 
-namespace PhpOffice\PhpWord\Writer\Word2007\Part;
+namespace MunizEverton\PhpWord\Writer\Word2007\Part;
 
-use PhpOffice\Common\XMLWriter;
+use MunizEverton\PhpWord\Shared\XMLWriter;
 
 /**
  * Word2007 contenttypes part writer: [Content_Types].xml
@@ -31,7 +31,7 @@ class ContentTypes extends AbstractPart
      */
     public function write()
     {
-        /** @var \PhpOffice\PhpWord\Writer\Word2007 $parentWriter Type hint */
+        /** @var \MunizEverton\PhpWord\Writer\Word2007 $parentWriter Type hint */
         $parentWriter = $this->getParentWriter();
         $contentTypes = $parentWriter->getContentTypes();
 
@@ -49,7 +49,6 @@ class ContentTypes extends AbstractPart
             '/word/theme/theme1.xml' => $openXMLPrefix . 'officedocument.theme+xml',
             '/word/webSettings.xml'  => $wordMLPrefix  . 'webSettings+xml',
             '/word/fontTable.xml'    => $wordMLPrefix  . 'fontTable+xml',
-            '/word/comments.xml'     => $wordMLPrefix  . 'comments+xml',
         );
 
         $defaults = $contentTypes['default'];
@@ -80,7 +79,7 @@ class ContentTypes extends AbstractPart
     /**
      * Write content types element
      *
-     * @param \PhpOffice\Common\XMLWriter $xmlWriter XML Writer
+     * @param \MunizEverton\PhpWord\Shared\XMLWriter $xmlWriter XML Writer
      * @param array $parts
      * @param boolean $isDefault
      * @return void
