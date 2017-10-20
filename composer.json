@@ -10,18 +10,37 @@
     "license": "LGPL-3.0",
     "authors": [
         {
-            "name": "Everton Muniz",
-            "email": "munizeverton@gmail.com",
-            "homepage": "http://evertonmuniz.com.br"
+            "name": "Mark Baker"
+        },
+        {
+            "name": "Gabriel Bull",
+            "email": "me@gabrielbull.com",
+            "homepage": "http://gabrielbull.com/"
+        },
+        {
+            "name": "Franck Lefevre",
+            "homepage": "https://rootslabs.net/blog/"
+        },
+        {
+            "name": "Ivan Lanin",
+            "homepage": "http://ivan.lanin.org"
+        },
+        {
+            "name": "Roman Syroeshko",
+            "homepage": "http://ru.linkedin.com/pub/roman-syroeshko/34/a53/994/"
+        },
+        {
+          "name": "Everton Muniz",
+          "email": "munizeverton@gmail.com",
+          "homepage": "http://evertonmuniz.com.br"
         }
     ],
     "require": {
         "php": ">=5.3.3",
         "ext-xml": "*",
-        "zendframework/zend-escaper": "2.4.*",
-        "zendframework/zend-stdlib": "2.4.*",
-        "zendframework/zend-validator": "2.4.*",
-        "phpoffice/common": "0.2.*"
+        "zendframework/zend-escaper": "^2.2",
+        "zendframework/zend-stdlib": "^2.2",
+        "phpoffice/common": "^0.2"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*",
@@ -37,7 +56,7 @@
         "ext-zip": "Allows writing OOXML and ODF",
         "ext-gd2": "Allows adding images",
         "ext-xmlwriter": "Allows writing OOXML and ODF",
-        "ext-xsl": "Allows applying XSL style sheet to main document part of OOXML template",
+        "ext-xsl": "Allows applying XSL style sheet to headers, to main document part, and to footers of an OOXML template",
         "dompdf/dompdf": "Allows writing PDF"
     },
     "autoload": {

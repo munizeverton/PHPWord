@@ -12,6 +12,8 @@ PHPWord is a library written in pure PHP that provides a set of classes to write
 
 PHPWord is an open source project licensed under the terms of [LGPL version 3](https://github.com/PHPOffice/PHPWord/blob/develop/COPYING.LESSER). PHPWord is aimed to be a high quality software product by incorporating [continuous integration](https://travis-ci.org/PHPOffice/PHPWord) and [unit testing](http://phpoffice.github.io/PHPWord/coverage/develop/). You can learn more about PHPWord by reading the [Developers' Documentation](http://phpword.readthedocs.org/) and the [API Documentation](http://phpoffice.github.io/PHPWord/docs/develop/).
 
+If you have any questions, please ask on [StackOverFlow](https://stackoverflow.com/questions/tagged/phpword)
+
 Read more about PHPWord:
 
 - [Features](#features)
@@ -45,7 +47,7 @@ With PHPWord, you can create OOXML, ODF, or RTF documents dynamically using your
 - Insert charts (pie, doughnut, bar, line, area, scatter, radar)
 - Insert form fields (textinput, checkbox, and dropdown)
 - Create document from templates
-- Use XSL 1.0 style sheets to transform main document part of OOXML template
+- Use XSL 1.0 style sheets to transform headers, main document part, and footers of an OOXML template
 - ... and many more features on progress
 
 ## Requirements
@@ -55,8 +57,7 @@ PHPWord requires the following:
 - PHP 5.3.3+
 - [XML Parser extension](http://www.php.net/manual/en/xml.installation.php)
 - [Zend\Escaper component](http://framework.zend.com/manual/current/en/modules/zend.escaper.introduction.html)
-- Zend\Stdlib component
-- [Zend\Validator component](http://framework.zend.com/manual/current/en/modules/zend.validator.html)
+- [Zend\Stdlib component](http://framework.zend.com/manual/current/en/modules/zend.stdlib.hydrator.html)
 - [Zip extension](http://php.net/manual/en/book.zip.php) (optional, used to write OOXML and ODF)
 - [GD extension](http://php.net/manual/en/book.image.php) (optional, used to add images)
 - [XMLWriter extension](http://php.net/manual/en/book.xmlwriter.php) (optional, used to write OOXML and ODF)
