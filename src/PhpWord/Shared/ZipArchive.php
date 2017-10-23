@@ -135,7 +135,7 @@ class ZipArchive
         $this->filename = $filename;
 
         if (!$this->usePclzip) {
-            $zip = new ZipArchive();
+            $zip = new \ZipArchive();
             $result = $zip->open($this->filename, $flags);
 
             // Scrutizer will report the property numFiles does not exist
